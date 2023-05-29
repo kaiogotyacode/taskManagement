@@ -1,0 +1,31 @@
+body{
+    background-image: url(../images/loginBackground_new.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+}
+
+.loginTitulo{
+    text-align: center;    
+    font-family: cartooning;
+}
+
+@font-face {
+    font-family: cartooning;
+    src: url(../font/IBS\ Cartooning.ttf);
+}
+
+.loginContainer{
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.75);
+    color: #fff;
+    padding: 30px;
+    height: 600px;
+    width: 350px;
+    background-color: rgba(0,0,0,.75);
+}
+
+.signUp{
+    font-size: 0.8em;
+    color: #3498db;
+}
