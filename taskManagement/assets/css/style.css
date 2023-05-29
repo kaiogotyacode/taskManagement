@@ -1,31 +1,38 @@
 body{
-    background-image: url(../images/loginBackground_new.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment:fixed;
+    background: linear-gradient(160deg, #3498db, #fff);
+    background-attachment: fixed;
 }
 
 .loginTitulo{
     text-align: center;    
-    font-family: cartooning;
+    font-family: geomatrix;
+    font-size: 2em;
 }
 
 @font-face {
-    font-family: cartooning;
-    src: url(../font/IBS\ Cartooning.ttf);
+    font-family: geomatrix;
+    src: url(../font/Geomatrix.otf);
 }
 
 .loginContainer{
-    border-radius: 25px;
+    box-shadow: #fff 2px 5px 30px 5px;
     border: 1px solid rgba(255,255,255,.75);
     color: #fff;
     padding: 30px;
+
     height: 600px;
     width: 350px;
-    background-color: rgba(0,0,0,.75);
+
+
+    background: linear-gradient(250deg, rgba(0,0,0, .75),  rgba(0,0,0, .9));
+
 }
 
 .signUp{
     font-size: 0.8em;
     color: #3498db;
+}
+
+.goToLogin{
+    bottom: 100;
 }
