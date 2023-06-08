@@ -11,3 +11,15 @@ function validarCadastro (){
         return false;
     }
 }
+
+function validarLogin() {
+    var email = document.getElementById("email").value;
+    var senha = document.getElementById("senha").value;
+
+    if(email == ""  || senha == ""){
+        alert('Verifique os campos e tente novamente!');
+        return false;
+    }
+    
+    return true;
+}

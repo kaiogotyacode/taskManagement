@@ -14,11 +14,21 @@ body{
     src: url(../font/Geomatrix.otf);
 }
 
+.container{
+    height: 100vh;
+}
+
 .loginContainer{
+    position: relative;
     box-shadow: #fff 2px 5px 30px 5px;
     border: 1px solid rgba(255,255,255,.75);
     color: #fff;
     padding: 30px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
 
     height: 600px;
     width: 350px;
