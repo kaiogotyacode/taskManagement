@@ -8,6 +8,7 @@
     <title>Página Inicial</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../taskManagement/assets/css/style.css">
+    <script src="../taskManagement/assets/js/script.js"></script>
 </head>
 
 <body>
@@ -16,21 +17,21 @@
 
             <h1 class="display-2 loginTitulo">LOGIN</h1>
 
-            <form>
+            <form method="POST" action="login/logarUsuario.php" onsubmit="return validarLogin()">
                 <div class="row">
     
                     <div class="col-12">
                         <label for="email">Email: </label>
                     </div>
                     <div class="col-12">
-                        <input type="text" id="email" class="form-control">
+                        <input type="text" name="email" id="email" class="form-control">
                     </div>
     
                     <div class="col-12">
-                        <label for="email">Senha: </label>
+                        <label for="senha">Senha: </label>
                     </div>
                     <div class="col-12">
-                        <input type="password" id="senha" class="form-control">
+                        <input type="password" name="senha" id="senha" class="form-control">
                     </div>                
                 </div>
     
