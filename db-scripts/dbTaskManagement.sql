@@ -9,7 +9,7 @@ CREATE TABLE Usuarios (
 	senha VARCHAR(255)
 );
 
-CREATE TABLE Administradores (
+CREATE TABLE administradores (
    idUsuario INT PRIMARY KEY,
 	FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario)
 );
@@ -20,7 +20,7 @@ CREATE TABLE Projetos (
 	descricao	VARCHAR(255),
 	dataInicio DATE,
 	dataTermino DATE,
-	isActive BOOL
+	projeto_isActive BOOL
 );
 
 CREATE TABLE Usuarios_Projetos(
@@ -28,6 +28,8 @@ CREATE TABLE Usuarios_Projetos(
 	codProjeto INT,
 	
 	isResponsable BOOL,
+	
+	usuproj_isActive BOOL,
 	
 	FOREIGN KEY (codProjeto) REFERENCES Projetos(idProjeto),
 	FOREIGN KEY (codUsuario) REFERENCES Usuarios(idUsuario),
@@ -58,4 +60,6 @@ CREATE TABLE Comentarios (
 	
 	FOREIGN KEY (codTarefa) REFERENCES Tarefas(idTarefa)
 );
+
+
 
