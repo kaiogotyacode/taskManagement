@@ -4,12 +4,12 @@ USE dbTaskManagement;
 /*1 - CRIANDO UMA PROCEDURE PARA CADASTRAR ADMINISTRADOR */
 DELIMITER //
 	CREATE PROCEDURE sp_CadAdmin (
-		IN nome VARCHAR(255),
-		IN email VARCHAR(255),
-		IN senha VARCHAR(255)
+		IN p_nome VARCHAR(255),
+		IN p_email VARCHAR(255),
+		IN p_senha VARCHAR(255)
 	)
 	BEGIN
-		INSERT INTO usuarios (nome, email, senha) VALUES (nome, email, senha);
+		INSERT INTO usuarios (nome, email, senha) VALUES (p_nome, p_email, p_senha);
 		INSERT INTO administradores (idUsuario) VALUES  (LAST_INSERT_ID());
 	END //
 DELIMITER ;
@@ -17,12 +17,12 @@ DELIMITER ;
 /*2 - CRIANDO UMA PROCEDURE PARA CADASTRAR USUÁRIO */
 DELIMITER //
 	CREATE PROCEDURE sp_CadUser (
-		IN nome VARCHAR(255),
-		IN email VARCHAR(255),
-		IN senha VARCHAR(255)
+		IN p_nome VARCHAR(255),
+		IN p_email VARCHAR(255),
+		IN p_senha VARCHAR(255)
 	)
 	BEGIN
-		INSERT INTO usuarios (nome, email, senha) VALUES (nome, email, senha);
+		INSERT INTO usuarios (nome, email, senha) VALUES (p_nome, p_email, p_senha);
 	END //
 DELIMITER ;
 
@@ -44,14 +44,14 @@ CALL sp_CadUser('Vilma', 'vila@yahoo.com', 'vilma@sandrola' );
 /*CRIANDO A PROCEDURE -> CADASTRO DE PROJETO*/
 DELIMITER //
 	CREATE PROCEDURE sp_CadProjeto (
-		IN nome VARCHAR(255),
-		IN descricao VARCHAR(255),
-		IN dataInicio DATE,
-		IN dataTermino DATE,
-		IN isActive BOOL
+		IN p_nome VARCHAR(255),
+		IN p_descricao VARCHAR(255),
+		IN p_dataInicio DATE,
+		IN p_dataTermino DATE,
+		IN p_isActive BOOL
 	)
 	BEGIN
-		INSERT INTO projetos (nome,descricao,dataInicio,dataTermino,isActive) VALUES (nome,descricao,dataInicio,dataTermino,isActive);
+		INSERT INTO projetos (nome,descricao,dataInicio,dataTermino,isActive) VALUES (p_nome,p_descricao,p_dataInicio,p_dataTermino,p_isActive);
 	END //
 DELIMITER ;
 
@@ -73,12 +73,12 @@ CALL sp_CadProjeto ('Festa Junina', 'Em comemoração ao dia de São João, tere
 /*	CRIAR O VÍNCULO DE USUÁRIO NO PROJETO */
 DELIMITER //
 	CREATE PROCEDURE sp_VinculaUsuarioProjeto(
-		IN codUsuario INT, 
-		IN codProjeto INT, 
-		IN isResponsable BOOL	
+		IN p_codUsuario INT, 
+		IN p_codProjeto INT, 
+		IN p_isResponsable BOOL	
 	)
 	BEGIN
-		INSERT INTO usuarios_projetos  (codUsuario, codProjeto, isResponsable) VALUES (codUsuario,codProjeto,isResponsable);		
+		INSERT INTO usuarios_projetos  (codUsuario, codProjeto, isResponsable) VALUES (p_codUsuario,p_codProjeto,p_isResponsable);		
 	END //
 DELIMITER ;
 
@@ -129,11 +129,49 @@ CALL sp_VinculaUsuarioProjeto (2,3,0);
 CALL sp_VinculaUsuarioProjeto (3,3,0);
 
 
-/* MÉTODO ALTERAR [PROJETO] */
-CREATE PROCEDURE sp_AlterarProjeto(
-	IN nome VARCHAR(255),
-	IN descricao VARCHAR(255),
-	IN dataInicio DATE,
-	IN dataTermino DATE
-)
+/* MÉTODO ALTERAR [PROJETO] */ /*HELPER: Nome, Descricao, DataInicio, DataTermino, codProjeto */
+DELIMITER //
+	CREATE PROCEDURE sp_AlterarProjeto(
+		IN p_nome VARCHAR(255),
+		IN p_descricao VARCHAR(255),
+		IN p_dataInicio DATE,
+		IN p_dataTermino DATE,
+		IN p_codProjeto INT
+	)
+	BEGIN
+		UPDATE projetos SET nome = p_nome, descricao = p_descricao, dataInicio = p_dataInicio, dataTermino = p_dataTermino WHERE idProjeto = p_codProjeto;
+	END //
+DELIMITER ;
+
+
+
+/*CRIAR MÉTODO: REMOVER/ADICIONAR CARGO DE RESPONSÁVEL */
+DELIMITER //
+	CREATE PROCEDURE sp_SwitchResponsavel(
+		IN p_codUsuario INT,
+		IN p_codProjeto INT,
+		IN p_isResponsable BOOL
+	)
+	BEGIN
+		UPDATE usuarios_projetos SET isResponsable = p_isResponsable WHERE (codUsuario = p_codUsuario AND codProjeto = p_codProjeto);
+	END //
+DELIMITER ;
+
+/*helper SwitchResponsavel: CodUsuario, CodProjeto, isResponsable */
+CALL sp_SwitchResponsavel (2,1,1);
+CALL sp_SwitchResponsavel (3,2,1);
+CALL sp_SwitchResponsavel (4,3,1);
+
+
+/*CRIAR MÉTODO: REMOVER RESPONSÁVEL/INTEGRANTE DO PROJETO  */
+
+	
+	SELECT * FROM usuarios_projetos;	
+
+
+
+	SELECT P.idProjeto 'Código', P.nome 'Projeto', U.nome 'Usuário', UP.isResponsable 'Responsável'  
+	FROM USUARIOS U 
+	INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario 
+	INNER JOIN projetos P ON P.idProjeto = UP.codProjeto WHERE U.idUsuario = 2;
 
