@@ -52,7 +52,7 @@ CREATE TABLE Tarefas (
 	FOREIGN KEY (codUsuario) REFERENCES Usuarios(idUsuario)
 );
 
-CREATE TABLE Comentarios (
+CREATE TABLE comentarios (
 	idComentario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	codTarefa INT,
 	texto VARCHAR(255),
