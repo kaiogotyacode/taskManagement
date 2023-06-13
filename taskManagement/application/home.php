@@ -10,6 +10,7 @@
 </head>
 <?php
     session_start(); 
+    include ('../conexao.php');
 ?>
 <body>
 
@@ -19,7 +20,7 @@
         <h1 class="tituloNav">Task Management</h1>
     </div>
 
-  <div style="<?php if($_SESSION['s_admin'] == 1){print "background-color: #f39c12;";}else{print "background-color: #3498db;";} ?>" class="userStatus">
+  <div style="<?php if($_SESSION['s_admin'] == 1){print "background-color: #f39c12;";}else{print "background-color: #3498db;";} ?>" class="userStatus" onclick="logout();">
 
   <img class="adm" height="50" width="50" src="../assets/images/userIcon.png"/>
 
@@ -36,9 +37,37 @@
 
 </nav>
 
-
-
 <div class="container">    
+
+    <div  class="adm-projects">
+            <p>Gerenciamento de Projetos</p>
+            <div class="adm-projects-content">
+            <?php 
+                $queryAdmListProjetos = "SELECT * FROM projetos;";
+                $retornoAdmListProj = $conn->query($queryAdmListProjetos);
+
+                if($retornoAdmListProj->num_rows > 0){
+                    while($rowAdm = $retornoAdmListProj->fetch_assoc()){
+                        print "
+                                <div class='adm-project-option' onclick=\"alert('".$rowAdm['idProjeto']."')\">
+                                <p> ". $rowAdm['nome'] ."</p>
+                                <div style='background-color: #535c68' class='adm-project-management'>
+                                    <p>Management</p>
+                                </div>
+                                </div>
+                        ";
+                    }
+                }
+            ?>
+               
+
+                <div class="adm-project-addProject">
+                    <button class="btn-newProject"> Adicionar Projeto </button>
+                </div>
+
+            </div>
+    </div>
+
 
 <?php 
 
@@ -46,14 +75,15 @@
 
     if($_SESSION['s_admin'] == 1){
         print "<script> hideContent(); </script>";
+    }else{
+        print "<script> hideFromUser(); </script>";
     }
 ?>
     <div class="my-projects">
         <h2> Meus Projetos </h2>
         <div class="my-projects-content">
 
-            <?php 
-                include ('../conexao.php');
+            <?php                
 
                 $queryMyProjects  = "CALL sp_meusProjetos(". $_SESSION['s_idUsuario'] ."); ";
                 $retorno = $conn->query($queryMyProjects);
@@ -83,7 +113,6 @@
 
         </div>
     </div>
-
 
 </div>
 

@@ -40,7 +40,7 @@ body{
     background-color: rgba(255,255,255, .75); 
 }
 
-.project-option{
+.project-option, .adm-project-option{
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -56,14 +56,14 @@ body{
     background-color: rgba(255,255,255, .85);    
 }
 
-.project-option>p{
+.project-option>p, .adm-project-option >p {
     padding: 10px;
     font-size: 1.5em;
     font-family: geomatrix;
     
 }
 
-.my-project-isResponsable{
+.my-project-isResponsable, .adm-project-management{
     display: flex;
     font-family: geomatrix;
     justify-content: center;
@@ -74,6 +74,37 @@ body{
     height: 100%;
     width: 130px;
     text-transform: uppercase;
+}
+
+.adm-project-management{
+    color: #fff;
+}
+
+.adm-project-addProject{
+    height: 50px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-newProject{
+    transition: 0.25s;
+    height: fit-content;
+    width: fit-content;
+    color: #fff;
+    font-family: geomatrix;
+    border: 1px solid #244d12;
+    background-color: #64bc3f;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-newProject:hover{
+    background-color: #92e46f;
+    color: #000;
 }
 
 .loginContainer{
@@ -129,6 +160,7 @@ nav{
 }
 
 .userStatus{
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,4 +171,28 @@ nav{
     right: 0%;
     height: 80px;
     width: 150px;  
+}
+
+
+.adm-projects{
+    margin-top: 100px;
+    width: 80vw;
+    height: 50vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.adm-projects>p{
+    text-align: center;
+    font-family: geomatrix;
+    font-size: 3em;
+    padding: 20px;
+}
+
+.adm-projects-content{
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #000;
 }
