@@ -10,6 +10,7 @@
 </head>
 <?php
     session_start(); 
+    include ('../conexao.php');
 ?>
 <body>
 
@@ -38,17 +39,34 @@
 
 <div class="container">    
 
-    <!-- Métodos ADMIN -->
     <div  class="adm-projects">
-            <p>Listagem de Projetos</p>
+            <p>Gerenciamento de Projetos</p>
             <div class="adm-projects-content">
-                &nbsp;
+            <?php 
+                $queryAdmListProjetos = "SELECT * FROM projetos;";
+                $retornoAdmListProj = $conn->query($queryAdmListProjetos);
+
+                if($retornoAdmListProj->num_rows > 0){
+                    while($rowAdm = $retornoAdmListProj->fetch_assoc()){
+                        print "
+                                <div class='adm-project-option' onclick=\"alert('".$rowAdm['idProjeto']."')\">
+                                <p> ". $rowAdm['nome'] ."</p>
+                                <div style='background-color: #535c68' class='adm-project-management'>
+                                    <p>Management</p>
+                                </div>
+                                </div>
+                        ";
+                    }
+                }
+            ?>
+               
+
+                <div class="adm-project-addProject">
+                    <button class="btn-newProject"> Adicionar Projeto </button>
+                </div>
+
             </div>
     </div>
-
-
-
-    <!-- FIM -->
 
 
 <?php 
@@ -65,8 +83,7 @@
         <h2> Meus Projetos </h2>
         <div class="my-projects-content">
 
-            <?php 
-                include ('../conexao.php');
+            <?php                
 
                 $queryMyProjects  = "CALL sp_meusProjetos(". $_SESSION['s_idUsuario'] ."); ";
                 $retorno = $conn->query($queryMyProjects);

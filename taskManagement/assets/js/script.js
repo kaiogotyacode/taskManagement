@@ -41,11 +41,10 @@ function hideFromUser(){
 
 function logout(){
 
-    if(confirm("Você deseja fazer logout?")){
+    if(confirm("Você deseja fazer logout?"))
         window.location.href = "../index.php";
-    }else{
-        return false;
-    }
+    else
+        return false;   
     
 
 }
