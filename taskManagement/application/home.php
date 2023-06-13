@@ -12,16 +12,29 @@
 <body>
 
 <nav>
-  &nbsp;
-</nav>
+    <div class="divTitulo">
+        <img src="../assets/images/calendarIcon.png" height="50" width="50" /> 
+        <h1 class="tituloNav">Task Management</h1>
+    </div>
 
-<?php
+  <div style="<?php if($_SESSION['s_admin'] == 1){print "background-color: #f39c12;";}else{print "background-color: #3498db;";} ?>" class="userStatus">
+
+  <img class="adm" height="50" width="50" src="../assets/images/userIcon.png"/>
+
+  <?php
     if($_SESSION['s_admin'] == 1){
-        print "  <h1 class='display-2'>Seja bem-vindo Admin:  ".$_SESSION["s_nome"]  ." </h1>";
+        print $_SESSION["s_nome"];
+        print "<br> ADM ";
     }else{
-        print "  <h1 class='display-2'>Seja bem-vindo Usuário: ". $_SESSION["s_nome"]  ." </h1>";        
+        print $_SESSION["s_nome"];      
+        print "<br> USER ";
     }
 ?>
+  </div>   
+
+</nav>
+
+
 
 <!-- Criar Interface para USUARIO ADMIN  -->
 <!-- Criar Interface para USUARIO COMUM  -->
