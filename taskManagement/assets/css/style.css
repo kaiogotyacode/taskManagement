@@ -107,7 +107,7 @@ body{
     color: #000;
 }
 
-.loginContainer{
+.loginContainer, .signUpContainer{
     position: absolute;
     box-shadow: #fff 2px 5px 30px 5px;
     border: 1px solid rgba(255,255,255,.75);
@@ -119,13 +119,17 @@ body{
 
     transform: translate(-50%, -50%);
 
-    height: 600px;
+    height: 400px;
     width: 350px;
 
 
     background: linear-gradient(250deg, rgba(0,0,0, .75),  rgba(0,0,0, .9));
 
 }
+.signUpContainer{
+    height: 550px;
+}
+
 
 .signUp{
     font-size: 0.8em;
@@ -177,7 +181,8 @@ nav{
 .adm-projects{
     margin-top: 100px;
     width: 80vw;
-    height: 50vh;
+    min-height: 50vh;
+    height:auto;
     margin-left: 10vw;
     margin-right: 10vw;
 }
@@ -195,4 +200,63 @@ nav{
     width: 100%;
     border-radius: 5px;
     border: 1px solid #000;
+}
+
+#modalNewProject, #fade{
+    transition: 1s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#modalNewProject{    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: linear-gradient(250deg, rgba(106, 176, 76, .75), rgba(186, 220, 88, .75));
+    border-radius: 5px;
+    border: 1px solid #fff;
+    height: 500px;
+    width: 700px;
+    z-index: 10;
+}
+
+#fade{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0, .75);
+}
+
+.modalHeader{
+    font-family: geomatrix;
+    text-align: center;
+    font-size: 2em;
+    color: #fff;
+}
+
+.exitModalNewProject{
+    position: inherit;
+    top: 0;
+    left: 90%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+.newProjectContainer{
+    width: 75%;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+}
+
+.align-submit-button{
+    margin-top: 35px !important;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
