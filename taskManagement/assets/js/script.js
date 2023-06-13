@@ -23,3 +23,11 @@ function validarLogin() {
     
     return true;
 }
+
+function hideContent(){
+    window.addEventListener("load", ()=>{
+        var myProjects = document.getElementsByClassName("my-projects")[0];
+        myProjects.style.cssText += 'display: none;';
+    });
+
+}
