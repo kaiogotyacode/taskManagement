@@ -19,7 +19,7 @@
         <h1 class="tituloNav">Task Management</h1>
     </div>
 
-  <div style="<?php if($_SESSION['s_admin'] == 1){print "background-color: #f39c12;";}else{print "background-color: #3498db;";} ?>" class="userStatus">
+  <div style="<?php if($_SESSION['s_admin'] == 1){print "background-color: #f39c12;";}else{print "background-color: #3498db;";} ?>" class="userStatus" onclick="logout();">
 
   <img class="adm" height="50" width="50" src="../assets/images/userIcon.png"/>
 
@@ -36,9 +36,20 @@
 
 </nav>
 
-
-
 <div class="container">    
+
+    <!-- Métodos ADMIN -->
+    <div  class="adm-projects">
+            <p>Listagem de Projetos</p>
+            <div class="adm-projects-content">
+                &nbsp;
+            </div>
+    </div>
+
+
+
+    <!-- FIM -->
+
 
 <?php 
 
@@ -46,6 +57,8 @@
 
     if($_SESSION['s_admin'] == 1){
         print "<script> hideContent(); </script>";
+    }else{
+        print "<script> hideFromUser(); </script>";
     }
 ?>
     <div class="my-projects">
@@ -83,7 +96,6 @@
 
         </div>
     </div>
-
 
 </div>
 

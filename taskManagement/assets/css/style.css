@@ -129,6 +129,7 @@ nav{
 }
 
 .userStatus{
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,4 +140,28 @@ nav{
     right: 0%;
     height: 80px;
     width: 150px;  
+}
+
+
+.adm-projects{
+    margin-top: 100px;
+    width: 80vw;
+    height: 50vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.adm-projects>p{
+    text-align: center;
+    font-family: geomatrix;
+    font-size: 3em;
+    padding: 20px;
+}
+
+.adm-projects-content{
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #000;
 }
