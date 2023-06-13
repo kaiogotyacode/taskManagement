@@ -20,7 +20,8 @@ body{
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
-    position: inherit;    
+    position: inherit;       
+    margin-bottom: 5vh !important; 
 }
 
 .my-projects>h2{
@@ -36,8 +37,9 @@ body{
     border-radius: 10px;
     position: relative;
     width: 100%;
-    height: 100%;
-    background-color: rgba(255,255,255, .75); 
+    min-height: 300px;
+    height: auto;
+    background-color: rgba(255,255,255, .75);    
 }
 
 .project-option, .adm-project-option{
@@ -259,4 +261,24 @@ nav{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.project-management{
+    margin-top: 50px;
+    color: #fff;
+    font-size: 4em;
+    text-align: center;
+    font-family: geomatrix;
+}
+
+.project-management-content{
+
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255, .75);
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    min-height: 500px;
+    height: auto;
+    background: linear-gradient(250deg,  rgba(126, 214, 223, .55), rgba(126, 214, 223,1));
 }

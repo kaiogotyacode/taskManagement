@@ -24,14 +24,6 @@ function validarLogin() {
     return true;
 }
 
-function hideContent(){
-    window.addEventListener("load", ()=>{
-        var myProjects = document.getElementsByClassName("my-projects")[0];
-        myProjects.style.cssText += 'display: none;';
-    });
-
-}
-
 function hideFromUser(){
     window.addEventListener("load", ()=> {
         var myProjects = document.getElementsByClassName("adm-projects")[0];
@@ -41,12 +33,24 @@ function hideFromUser(){
 
 function logout(){
 
-    if(confirm("Você deseja fazer logout?"))
-        window.location.href = "../index.php";
-    else
-        return false;   
-    
+    if(confirm("Você deseja fazer logout?")){
+        window.location.href = '../index.php';
 
+    }else{
+        return false;   
+
+    }    
+}
+
+function logoutGerenciamento(){
+
+    if(confirm("Você deseja fazer logout?")){
+        window.location.href = '../index.php';
+
+    }else{
+        return false;   
+
+    }    
 }
 
 window.addEventListener("load", ()=>{
