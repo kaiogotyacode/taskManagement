@@ -61,7 +61,7 @@
 
                     while($row = $retorno->fetch_assoc()){
                         print "
-                        <div class='project-option' onclick=\"alert('oi')\">
+                        <div class='project-option' onclick=\"alert('".$row['idProjeto']."')\">
                             <p> ".$row['Projeto']." </p>
                             <div style='";
                         if($row['Responsável'] == 1 ){print "background-color: #22a6b3";}else{print "background-color: #7ed6df";}
