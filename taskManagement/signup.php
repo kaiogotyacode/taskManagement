@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <div class="loginContainer">
+        <div class="signUpContainer">
 
             <h1 class="display-2 loginTitulo">REGISTER</h1>
 
