@@ -41,6 +41,7 @@ body{
 }
 
 .project-option{
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -63,14 +64,20 @@ body{
 }
 
 .my-project-isResponsable{
+    display: flex;
+    font-family: geomatrix;
+    justify-content: center;
+    align-items: center;
+    
     position: relative;
-    background-color: #000;
+    background-color: #22a6b3;
     height: 100%;
-    width: 100px;
+    width: 130px;
+    text-transform: uppercase;
 }
 
 .loginContainer{
-    position: relative;
+    position: absolute;
     box-shadow: #fff 2px 5px 30px 5px;
     border: 1px solid rgba(255,255,255,.75);
     color: #fff;
