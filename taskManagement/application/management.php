@@ -16,7 +16,7 @@ include('../conexao.php');
 
 $_SESSION["s_idProjeto"]  =  $_REQUEST["idProjeto"];
 
-$queryManagement = "SELECT * FROM Projetos WHERE idProjeto = ". $_SESSION['s_idProjeto'];
+$queryManagement = "SELECT * FROM Projetos WHERE idProjeto = " . $_SESSION['s_idProjeto'];
 $retornoManagement = $conn->query($queryManagement);
 
 $objProjeto = $retornoManagement->fetch_assoc();
@@ -58,10 +58,40 @@ $dataTermino = $objProjeto['dataTermino'];
     </nav>
 
     <div class="project-management">
-        <p><?php print $nome; ?></p>
-        <div class="project-management-content">
+        <p> <?php print $nome; ?> </p>
+        <form action="atualizarProjeto.php" method="POST" onsubmit="return validarAlteracao()">
+            <div class="project-management-content">
+                <div class="management-row">
+                    <img class="management-img-adjust" height="50" width="50" src="../assets/images/projectsIcon.png" />
+                    <label class="management-label"> Projeto: </label>
+                    <input class="form-control management-adjust" disabled value="<?php print $nome; ?>" placeholder="Digite um nome..." type="text" />
+                </div>
 
-        </div>
+                <div class="management-row">
+                    <img class="management-img-adjust" height="50" width="50" src="../assets/images/descricaoIcon.png" />
+                    <label class="management-label"> Descrição: </label>
+                    <textarea class="form-control management-adjust" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
+                </div>
+
+                <div class="management-row">
+                    <img class="management-img-adjust" height="50" width="50" src="../assets/images/dateIcon.png" />
+                    <label class="management-label"> Data Início: </label>
+                    <input class="form-control management-adjust-data" disabled value="<?php print $dataInicio; ?>" type="date" />
+                </div>
+
+                <div class="management-row">
+                    <img class="management-img-adjust" height="50" width="50" src="../assets/images/dateIconConcluded.png" />
+                    <label class="management-label"> Data Término: </label>
+                    <input class="form-control management-adjust-data" disabled value="<?php print $dataTermino; ?>" type="date" />
+                </div>
+
+                <div class="btn-content-management">
+                    <button class="btn btn-danger" type="button" onclick="return excluirProjeto(<?php print $_SESSION['s_idProjeto'] ?>)">Excluir</button>
+                    <button class="btn btn-primary" type="button" onclick="return alterarProjeto(<?php print $_SESSION['s_idProjeto'] ?>)">Alterar</button>
+                </div>
+            </div>
+        </form>
+
 
     </div>
 

@@ -111,3 +111,16 @@ function validarNewProject(){
 
     return true;
 }
+
+
+function alterarProjeto(idProjeto){
+    alert("Campos liberados para alteração!");
+
+    
+}
+
+function excluirProjeto(idProjeto){
+    if(confirm("Você realmente deseja excluir o projeto? ")){
+        window.location.href= "../../taskManagement/application/excluirProjeto.php?idProjeto=" + idProjeto;
+    }
+}
