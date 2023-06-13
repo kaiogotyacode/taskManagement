@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <?php
@@ -36,10 +37,18 @@
 
 
 
-<!-- Criar Interface para USUARIO ADMIN  -->
-<!-- Criar Interface para USUARIO COMUM  -->
-
-<!-- Final da Tarefa: Adicionar um verificador de SESSIONS para que então, seja exibido o conteúdo  -->
-
+<div class="container">    
+    <div class="my-projects">
+        <h2> Meus Projetos </h2>
+        <div class="my-projects-content">
+            <div class="project-option">
+                <p> Nome do Projeto </p>
+                <div class="my-project-isResponsable">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
