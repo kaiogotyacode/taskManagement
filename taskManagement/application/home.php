@@ -56,7 +56,7 @@ include('../conexao.php');
         <p>Gerenciamento de Projetos</p>
         <div class="adm-projects-content">
             <?php
-            $queryAdmListProjetos = "SELECT * FROM projetos;";
+            $queryAdmListProjetos = "SELECT * FROM projetos WHERE projeto_isActive = 1;";
             $retornoAdmListProj = $conn->query($queryAdmListProjetos);
 
             if ($retornoAdmListProj->num_rows > 0) {
