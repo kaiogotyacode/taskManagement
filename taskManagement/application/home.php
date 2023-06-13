@@ -6,6 +6,7 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/script.js"></script>
 </head>
 <?php
     session_start(); 
@@ -43,8 +44,8 @@
 
     $contador = 0;
 
-    if($_SESSION['s_admin'] == 0){
-        print "";
+    if($_SESSION['s_admin'] == 1){
+        print "<script> hideContent(); </script>";
     }
 ?>
     <div class="my-projects">
@@ -77,11 +78,7 @@
                         </div>                            
                         ";
                     }                        
-                }else{
-
-                        print "<script> alert('Ñ tem projeto!!') </script> ";
                 }
-
             ?>          
 
         </div>
