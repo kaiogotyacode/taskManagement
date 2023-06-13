@@ -196,3 +196,33 @@ nav{
     border-radius: 5px;
     border: 1px solid #000;
 }
+
+#modalNewProject, #fade{
+    transition: 1s;
+    /* opacity: 0;
+    pointer-events: none; */
+}
+
+#modalNewProject{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #000;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    height: 800px;
+    width: 700px;
+    z-index: 10;
+}
+
+#fade{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0, .75);
+}

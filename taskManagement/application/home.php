@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="../assets/js/script.js"></script>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 <?php
     session_start(); 
@@ -37,7 +38,7 @@
 
 </nav>
 
-<div class="container">    
+<div class="">    
 
     <div  class="adm-projects">
             <p>Gerenciamento de Projetos</p>
@@ -62,7 +63,17 @@
                
 
                 <div class="adm-project-addProject">
-                    <button class="btn-newProject"> Adicionar Projeto </button>
+                    <button id="AddNewProject" class="btn-newProject"> Adicionar Projeto </button>
+
+                    <!-- Modal  -->
+                    <div id="fade">
+                        &nbsp;
+                    </div>
+                    <div id="modalNewProject">
+
+                    </div>
+
+                    <!-- Modal  -->
                 </div>
 
             </div>

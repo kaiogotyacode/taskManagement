@@ -48,3 +48,17 @@ function logout(){
     
 
 }
+
+window.addEventListener("load", ()=>{
+    
+    var btnNewProject = document.getElementById("AddNewProject");
+    btnNewProject.addEventListener("click", ()=>{
+        var modal = document.getElementById("modalNewProject");
+        var fade = document.getElementById("fade");
+
+        
+        modal.style.cssText += 'opacity: 1; pointer-events: all;';
+        fade.style.cssText += 'opacity: 1; pointer-events: all;';
+        
+    });
+});
