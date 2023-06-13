@@ -14,12 +14,70 @@ body{
     src: url(../font/Geomatrix.otf);
 }
 
-.container{
-    height: 100vh;
+.my-projects{
+    margin-top: 5vh;
+    height: 50vh;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    position: inherit;    
+}
+
+.my-projects>h2{
+    font-size: 3em;
+    font-family: geomatrix;
+    color: #000;
+    text-align: center;
+    padding: 30px;
+}
+
+.my-projects-content{
+    border: 1px solid #000;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255, .75); 
+}
+
+.project-option{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    height: 80px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: rgba(255,255,255, .85);    
+}
+
+.project-option>p{
+    padding: 10px;
+    font-size: 1.5em;
+    font-family: geomatrix;
+    
+}
+
+.my-project-isResponsable{
+    display: flex;
+    font-family: geomatrix;
+    justify-content: center;
+    align-items: center;
+    
+    position: relative;
+    background-color: #22a6b3;
+    height: 100%;
+    width: 130px;
+    text-transform: uppercase;
 }
 
 .loginContainer{
-    position: relative;
+    position: absolute;
     box-shadow: #fff 2px 5px 30px 5px;
     border: 1px solid rgba(255,255,255,.75);
     color: #fff;
@@ -61,7 +119,7 @@ nav{
 
 .divTitulo{
     font-family: geomatrix;
-    font-size: 1.5em;
+    font-size: 1.8em;
     position: inherit;
     width: 75%;
     height: 100%;

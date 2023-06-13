@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <?php
@@ -36,10 +37,58 @@
 
 
 
-<!-- Criar Interface para USUARIO ADMIN  -->
-<!-- Criar Interface para USUARIO COMUM  -->
+<div class="container">    
 
-<!-- Final da Tarefa: Adicionar um verificador de SESSIONS para que então, seja exibido o conteúdo  -->
+<?php 
+
+    $contador = 0;
+
+    if($_SESSION['s_admin'] == 0){
+        print "";
+    }
+?>
+    <div class="my-projects">
+        <h2> Meus Projetos </h2>
+        <div class="my-projects-content">
+
+            <?php 
+                include ('../conexao.php');
+
+                $queryMyProjects  = "CALL sp_meusProjetos(". $_SESSION['s_idUsuario'] ."); ";
+                $retorno = $conn->query($queryMyProjects);
+
+                if($retorno->num_rows > 0){
+
+                    while($row = $retorno->fetch_assoc()){
+                        print "
+                        <div class='project-option' onclick=\"alert('oi')\">
+                            <p> ".$row['Projeto']." </p>
+                            <div style='";
+                        if($row['Responsável'] == 1 ){print "background-color: #22a6b3";}else{print "background-color: #7ed6df";}
+                        print "' class='my-project-isResponsable'>
+                                ";
+                                    if($row['Responsável'] == 1 ){
+                                        print "  <p> Responsável </p> ";
+                                    }else{
+                                        print "  <p> Integrante </p>";                                        
+                                    }
+                                print "
+                            </div>
+                        </div>                            
+                        ";
+                    }                        
+                }else{
+
+                        print "<script> alert('Ñ tem projeto!!') </script> ";
+                }
+
+            ?>          
+
+        </div>
+    </div>
+
+
+</div>
 
 </body>
 </html>
