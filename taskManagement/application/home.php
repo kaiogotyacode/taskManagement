@@ -18,7 +18,7 @@ include('../conexao.php');
 <body>
 
     <nav>
-        <div class="divTitulo">
+        <div onclick="window.location.href='./home.php'" class="divTitulo">
             <img src="../assets/images/calendarIcon.png" height="50" width="50" />
             <h1 class="tituloNav">Task Management</h1>
         </div>

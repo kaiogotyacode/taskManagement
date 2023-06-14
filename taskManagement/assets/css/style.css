@@ -321,3 +321,7 @@ nav{
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.divTitulo:hover{
+    cursor: pointer;
+}

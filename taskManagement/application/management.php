@@ -31,7 +31,7 @@ $dataTermino = $objProjeto['dataTermino'];
 <body>
 
     <nav>
-        <div class="divTitulo">
+        <div onclick="window.location.href='./home.php'" class="divTitulo">
             <img src="../assets/images/calendarIcon.png" height="50" width="50" />
             <h1 class="tituloNav">Task Management</h1>
         </div>
@@ -59,30 +59,30 @@ $dataTermino = $objProjeto['dataTermino'];
 
     <div class="project-management">
         <p> <?php print $nome; ?> </p>
-        <form action="atualizarProjeto.php" method="POST" onsubmit="return validarAlteracao()">
+        <form action="alterarProjeto.php" method="POST" onsubmit="return validarAlteracao()">
             <div class="project-management-content">
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/projectsIcon.png" />
                     <label class="management-label"> Projeto: </label>
-                    <input class="form-control management-adjust" id="mngNomeProjeto" disabled value="<?php print $nome; ?>" placeholder="Digite um nome..." type="text" />
+                    <input class="form-control management-adjust" name="mngNomeProjeto" id="mngNomeProjeto" disabled value="<?php print $nome; ?>" placeholder="Digite um nome..." type="text" />
                 </div>
 
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/descricaoIcon.png" />
                     <label class="management-label"> Descrição: </label>
-                    <textarea class="form-control management-adjust"  id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
+                    <textarea class="form-control management-adjust" name="mngDescricao"  id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
                 </div>
 
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/dateIcon.png" />
                     <label class="management-label"> Data Início: </label>
-                    <input class="form-control management-adjust-data" id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
+                    <input class="form-control management-adjust-data" name="mngDataInicio"  id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
                 </div>
 
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/dateIconConcluded.png" />
                     <label class="management-label"> Data Término: </label>
-                    <input class="form-control management-adjust-data" id="mngDataTermino" disabled value="<?php print $dataTermino; ?>" type="date" />
+                    <input class="form-control management-adjust-data" name="mngDataTermino" id="mngDataTermino" disabled value="<?php print $dataTermino; ?>" type="date" />
                 </div>
 
                 <div class="btn-content-management">

@@ -1,12 +1,12 @@
-function validarCadastro (){
+function validarCadastro() {
     var nome = document.getElementById("nome").value;
     var email = document.getElementById("email").value;
     var senha = document.getElementById("senha").value;
     var confirmaSenha = document.getElementById("confirmarSenha").value;
 
-    if(nome  != "" && email != "" && senha != "" && confirmaSenha != "" && senha == confirmaSenha){
+    if (nome != "" && email != "" && senha != "" && confirmaSenha != "" && senha == confirmaSenha) {
         return true;
-    }else{        
+    } else {
         alert('Ops! Verifique os dados digitados e tente novamente!');
         return false;
     }
@@ -16,129 +16,127 @@ function validarLogin() {
     var email = document.getElementById("email").value;
     var senha = document.getElementById("senha").value;
 
-    if(email == ""  || senha == ""){
+    if (email == "" || senha == "") {
         alert('Verifique os campos e tente novamente!');
         return false;
     }
-    
+
     return true;
 }
 
-function hideFromUser(){
-    window.addEventListener("load", ()=> {
+function hideFromUser() {
+    window.addEventListener("load", () => {
         var myProjects = document.getElementsByClassName("adm-projects")[0];
         myProjects.style.cssText += 'display: none;';
     });
 }
 
-function logout(){
+function logout() {
 
-    if(confirm("Você deseja fazer logout?")){
+    if (confirm("Você deseja fazer logout?")) {
         window.location.href = '../index.php';
 
-    }else{
-        return false;   
+    } else {
+        return false;
 
-    }    
+    }
 }
 
-function logoutGerenciamento(){
+function logoutGerenciamento() {
 
-    if(confirm("Você deseja fazer logout?")){
+    if (confirm("Você deseja fazer logout?")) {
         window.location.href = '../index.php';
 
-    }else{
-        return false;   
+    } else {
+        return false;
 
-    }    
+    }
 }
 
-window.addEventListener("load", ()=>{
-    
+window.addEventListener("load", () => {
+
     var btnNewProject = document.getElementById("AddNewProject");
-    btnNewProject.addEventListener("click", ()=>{
+    btnNewProject.addEventListener("click", () => {
         var modal = document.getElementById("modalNewProject");
         var fade = document.getElementById("fade");
 
-        
+
         modal.style.cssText += 'opacity: 1; pointer-events: all;';
         fade.style.cssText += 'opacity: 1; pointer-events: all;';
-        
+
     });
 });
 
 
-function exitModalNewProject(){
+function exitModalNewProject() {
     var modal = document.getElementById("modalNewProject");
     var fade = document.getElementById("fade");
 
-    
+
     modal.style.cssText += 'opacity: 0; pointer-events: none;';
     fade.style.cssText += 'opacity: 0; pointer-events: none;';
 }
 
 
-function validarNewProject(){
+function validarNewProject() {
     var NPNome = document.getElementById("NPNome");
-    var NPDescricao= document.getElementById("NPDescricao");
-    var NPDataInicio= document.getElementById("NPDataInicio");
-    var NPDataTermino= document.getElementById("NPDataTermino");
+    var NPDescricao = document.getElementById("NPDescricao");
+    var NPDataInicio = document.getElementById("NPDataInicio");
+    var NPDataTermino = document.getElementById("NPDataTermino");
 
-    if(NPNome.value.length == 0){        
+    if (NPNome.value.length == 0) {
         alert('Verifique o nome do projeto e tente novamente! ');
         NPNome.focus();
 
         return false;
-    }else
-    if(NPDescricao.value.length == 0){        
-        alert('Verifique a descrição do projeto e tente novamente! ');
-        NPDescricao.focus();
-        
-        return false;
-    }else
-    if(NPDataInicio.value.length != 10){        
-        alert('Verifique a data de início do projeto tente novamente! ');
-        NPDataInicio.focus();
-        
-        return false;
-    }else
-    if(NPDataTermino.value.length != 10){        
-        alert('Verifique a data de término do projeto tente novamente! ');
-        NPDataTermino.focus();
-        
-        return false;
-    }
+    } else
+        if (NPDescricao.value.length == 0) {
+            alert('Verifique a descrição do projeto e tente novamente! ');
+            NPDescricao.focus();
+
+            return false;
+        } else
+            if (NPDataInicio.value.length != 10) {
+                alert('Verifique a data de início do projeto tente novamente! ');
+                NPDataInicio.focus();
+
+                return false;
+            } else
+                if (NPDataTermino.value.length != 10) {
+                    alert('Verifique a data de término do projeto tente novamente! ');
+                    NPDataTermino.focus();
+
+                    return false;
+                }
 
     return true;
 }
 
 
-function alterarProjeto(idProjeto){
+
+function alterarProjeto(idProjeto) {
 
     var btnAlteraProjeto = document.querySelector("#btnAlteraProjeto");
-    var nomeProjeto = document.querySelector("#mngNomeProjeto");
-    var descricao = document.querySelector("#mngDescricao");
-    var dataInicio = document.querySelector("#mngDataInicio");
-    var dataTermino = document.querySelector("#mngDataTermino");
 
-    if(btnAlteraProjeto.innerHTML == 'Alterar' ){
+
+    if (btnAlteraProjeto.innerHTML == 'Alterar') {
+        alert("Campos liberados para alteração!");
 
         btnAlteraProjeto.innerHTML = 'Confirmar';
 
         document.querySelectorAll("#mngNomeProjeto , #mngDescricao ,  #mngDataInicio , #mngDataTermino").forEach(e => e.removeAttribute("disabled"));
 
-        alert('Campos liberados para alteração!');
         return false;
-    }if(btnAlteraProjeto.innerHTML == 'Confirmar'){
+    } if (btnAlteraProjeto.innerHTML == 'Confirmar') {
         return true;
     }
 
 
-    
+
 }
 
-function excluirProjeto(idProjeto){   
-    if(confirm("Você realmente deseja excluir o projeto? ")){
-        window.location.href= "../../taskManagement/application/excluirProjeto.php?idProjeto=" + idProjeto;
+function excluirProjeto(idProjeto) {
+    if (confirm("Você realmente deseja excluir o projeto? ")) {
+        window.location.href = "../../taskManagement/application/excluirProjeto.php?idProjeto=" + idProjeto;
     }
 }
