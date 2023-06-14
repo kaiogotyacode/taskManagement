@@ -1,12 +1,13 @@
 <?php
     include('../conexao.php');
+    session_start();
 
     $nome = $_POST["mngNomeProjeto"];
     $descricao = $_POST["mngDescricao"];
     $dataInicio = $_POST["mngDataInicio"];
     $dataTermino = $_POST["mngDataTermino"];
-
-    $queryUpdate = "UPDATE Projetos SET nome = '$nome', descricao = '$descricao', dataInicio = '$dataInicio', dataTermino = '$dataTermino' WHERE idProjeto = " . $_SESSION["s_idProjeto"];
+ 
+    $queryUpdate = "CALL sp_AlterarProjeto ('$nome', '$descricao', '$dataInicio', '$dataTermino', ". $_SESSION["s_idProjeto"] ." )";
 
     $retorno = $conn->query($queryUpdate);
 

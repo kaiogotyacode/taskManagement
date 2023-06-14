@@ -115,18 +115,17 @@ function validarNewProject(){
 
 
 function alterarProjeto(idProjeto){
-    alert("Campos liberados para alteração!");
-
+    
     var btnAlteraProjeto = document.querySelector("#btnAlteraProjeto");
-
-
+    
+    
     if(btnAlteraProjeto.innerHTML == 'Alterar' ){
+        alert("Campos liberados para alteração!");
 
         btnAlteraProjeto.innerHTML = 'Confirmar';
 
         document.querySelectorAll("#mngNomeProjeto , #mngDescricao ,  #mngDataInicio , #mngDataTermino").forEach(e => e.removeAttribute("disabled"));
 
-        alert('Campos liberados para alteração!');
         return false;
     }if(btnAlteraProjeto.innerHTML == 'Confirmar'){
         return true;
