@@ -80,17 +80,11 @@ CALL sp_CadProjeto ('Festa Junina', 'Em comemoração ao dia de São João, tere
 
 
 
-
-
-
 /*	HOME -> "MY PROJECTS" : Exibir projetos vinculados ao usuário.	*/
 	SELECT P.nome 'Projeto', U.nome 'Usuário', UP.isResponsable 'Responsável'  
 	FROM USUARIOS U 
 	INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario 
 	INNER JOIN projetos P ON P.idProjeto = UP.codProjeto WHERE U.idUsuario = 2;
-
-
-
 
 
 
@@ -178,7 +172,6 @@ DELIMITER ;
 
 
 
-
 /*CRIAR MÉTODO: REMOVER/ADICIONAR CARGO DE RESPONSÁVEL */
 DELIMITER //
 	CREATE PROCEDURE sp_SwitchResponsavel(
@@ -218,6 +211,28 @@ DELIMITER ;
 
 
 
+/*	MEUS PROJETOS [SELECT]*/
+/*helper: idUsuario */
+DELIMITER //
+	CREATE PROCEDURE sp_meusProjetos (
+		IN p_idUsuario INT
+	)
+	BEGIN
+      	SELECT P.idProjeto 'idProjeto', P.nome 'Projeto', U.nome 'Usuário', UP.isResponsable 'Responsável'  
+			FROM USUARIOS U 
+			INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario 
+			INNER JOIN projetos P ON P.idProjeto = UP.codProjeto WHERE U.idUsuario = p_idUsuario AND P.projeto_isActive =  1;
+
+	END //
+
+DELIMITER ;
+
+CALL sp_meusProjetos(2);
+
+
+
+
+
 /*	MINHAS TAREFAS [SELECT]*/
 /*helper: idUsuario, idProjeto */
 DELIMITER //
@@ -237,11 +252,7 @@ DELIMITER //
 
 DELIMITER ;
 
-CALL sp_MinhasTarefas(3,1);
-
-
-
-
+CALL sp_MinhasTarefas(2,1);
 
 
 
@@ -271,9 +282,6 @@ CALL sp_NovaTarefa (1,3,'Tarefa: Levar 4L de refrigerantes!', CURDATE(), '2023-0
 
 
 
-
-
-
 /*CRIAR PROCEDURE (RESPONSÁVEL): VER TAREFAS DA EQUIPE: PROJETO - NOME DO USUÁRIO - DESC TAREFA - DATA TÉRMINO - STATUS TAREFA*/
 /*idProjeto*/
 DELIMITER //
@@ -290,9 +298,6 @@ DELIMITER //
 DELIMITER ;
 
 CALL sp_VerTarefasEquipe(1);
-
-
-
 
 
 
@@ -320,10 +325,6 @@ CALL sp_alterarSituacaoTarefa(2, 3);
 
 
 
-
-
-
-
 /*	PROCEDURE: ADD COMMENT [CREATE] */
 /*helper: codTarefa, Texto  */
 DELIMITER //
@@ -337,17 +338,8 @@ DELIMITER //
 DELIMITER ; 
 	
 
-SELECT * FROM comentarios;
-
-
 CALL sp_AdicionarComentario(1,'Fui ao mercado porecatu e não encontrei a Pipoca do Tipo Doce Caramelo! Precisarei de mais tempo para tentar encontrar no Muffato!');
 	
 CALL sp_MinhasTarefas(2,1);
-	
-	
-	
-	
-	
-	
 	
 	
