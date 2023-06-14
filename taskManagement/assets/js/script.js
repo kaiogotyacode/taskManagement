@@ -113,13 +113,30 @@ function validarNewProject(){
 }
 
 
+
 function alterarProjeto(idProjeto){
     alert("Campos liberados para alteração!");
 
-    
+    var btnAlteraProjeto = document.querySelector("#btnAlteraProjeto");
+
+
+    if(btnAlteraProjeto.innerHTML == 'Alterar' ){
+
+        btnAlteraProjeto.innerHTML = 'Confirmar';
+
+        document.querySelectorAll("#mngNomeProjeto , #mngDescricao ,  #mngDataInicio , #mngDataTermino").forEach(e => e.removeAttribute("disabled"));
+
+        alert('Campos liberados para alteração!');
+        return false;
+    }if(btnAlteraProjeto.innerHTML == 'Confirmar'){
+        return true;
+    }
+
+
+
 }
 
-function excluirProjeto(idProjeto){
+function excluirProjeto(idProjeto){   
     if(confirm("Você realmente deseja excluir o projeto? ")){
         window.location.href= "../../taskManagement/application/excluirProjeto.php?idProjeto=" + idProjeto;
     }
