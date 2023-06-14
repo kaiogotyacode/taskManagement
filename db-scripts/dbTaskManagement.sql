@@ -60,6 +60,3 @@ CREATE TABLE comentarios (
 	
 	FOREIGN KEY (codTarefa) REFERENCES Tarefas(idTarefa)
 );
-
-
-
