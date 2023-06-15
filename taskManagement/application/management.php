@@ -70,13 +70,13 @@ $dataTermino = $objProjeto['dataTermino'];
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/descricaoIcon.png" />
                     <label class="management-label"> Descrição: </label>
-                    <textarea class="form-control management-adjust" name="mngDescricao"  id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
+                    <textarea class="form-control management-adjust" name="mngDescricao" id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
                 </div>
 
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/dateIcon.png" />
                     <label class="management-label"> Data Início: </label>
-                    <input class="form-control management-adjust-data" name="mngDataInicio"  id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
+                    <input class="form-control management-adjust-data" name="mngDataInicio" id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
                 </div>
 
                 <div class="management-row">
@@ -91,9 +91,68 @@ $dataTermino = $objProjeto['dataTermino'];
                 </div>
             </div>
         </form>
+    </div>
 
+
+    <div class="management-responsavel">
+        <p> Responsáveis </p>
+
+        <div class="management-responsavel-content">
+
+            <div class="management-responsavel-option">
+                <p> Joaquim Carneiro da Silva </p>
+                <div class="mng-excluir-membro" onclick="alert('Excluir')">
+                    <img src="../assets/images/binIcon.png" height="50" width="50" />
+                </div>
+            </div>
+
+            <button id="AddNewResponsavel" onclick="return openModalNewResponsavel()" class="btn-newResponsavel"> Adicionar Responsável </button>
+
+            <div class="adm-management-addResponsavel">
+
+
+                <div id="modalNewResponsavel">
+
+                    <div class="exitModalNewResponsavel" onclick="exitModalNewResponsavel()">
+                        <img src="../assets/images/exitIcon.png" height="50" width="50" />
+                    </div>
+
+                    <div class="modalHeader">
+                        <p> Novo Responsável </p>
+                    </div>
+                    <div class="modalBody newResponsavelContainer">
+                        <form method="POST" action="newResponsavel.php" onsubmit="return validarNewResponsavel()">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <label style="color: #fff;font-family: geomatrix" for="NPNome">Selecione um novo responsável: </label>
+                                    <select class="form-select" id="sltResponsavel">
+                                        <option>Arnaldo</option>
+                                    </select>
+                                </div>
+
+                                <div class="align-submit-button">
+                                    <input type="submit" class="btn-newResponsavel" value="Cadastrar" onclick="return false()" />
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div id="fade">
+                    &nbsp;
+                </div>
+
+            </div>
+
+
+        </div>
 
     </div>
+
 
 
 </body>

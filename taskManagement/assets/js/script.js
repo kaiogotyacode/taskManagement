@@ -65,11 +65,31 @@ window.addEventListener("load", () => {
         fade.style.cssText += 'opacity: 1; pointer-events: all;';
 
     });
+
+   
 });
 
+function openModalNewResponsavel() {
+     
+        var modal = document.getElementById("modalNewResponsavel");
+        var fade = document.getElementById("fade");    
+    
+        modal.style.cssText += 'opacity: 1; pointer-events: all;';
+        fade.style.cssText += 'opacity: 1; pointer-events: all;';    
+  
+}
 
 function exitModalNewProject() {
     var modal = document.getElementById("modalNewProject");
+    var fade = document.getElementById("fade");
+
+
+    modal.style.cssText += 'opacity: 0; pointer-events: none;';
+    fade.style.cssText += 'opacity: 0; pointer-events: none;';
+}
+
+function exitModalNewResponsavel() {
+    var modal = document.getElementById("modalNewResponsavel");
     var fade = document.getElementById("fade");
 
 

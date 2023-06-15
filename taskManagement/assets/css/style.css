@@ -269,7 +269,7 @@ nav{
 
 .project-management > p{
     margin-top: 50px;
-    color: #fff;
+    color: #000;
     font-size: 4em;    
     text-align: center;
 }
@@ -283,7 +283,7 @@ nav{
     margin-right: 10vw;
     min-height: 500px;
     height: auto;
-    background: linear-gradient(250deg,  rgba(126, 214, 223, .55), rgba(126, 214, 223,1));
+    background-color: #78d2d83d;
 }
 
 .management-row{
@@ -324,4 +324,119 @@ nav{
 
 .divTitulo:hover{
     cursor: pointer;
+}
+
+
+.management-responsavel{
+    font-family: geomatrix;
+}
+
+.management-responsavel > p{
+    margin-top: 50px;
+    color: #000;
+    font-size: 4em;    
+    text-align: center;
+}
+
+.management-responsavel-content{
+    background-color: #78d2d83d;
+    min-height: 500px;
+    height: auto;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-bottom: 50vh;
+    font-size: 2em;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255, .75);
+}
+
+.management-responsavel-option{    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    height: 100px;
+}
+
+.management-responsavel-content > .management-responsavel-option{    
+    padding: 30px;
+}
+
+.mng-excluir-membro{
+    transition: 0.5s;
+    background-color: rgba(255, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 5px;    
+    width: 80px;
+    height: 80px;
+}
+
+.mng-excluir-membro:hover{
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255, 0, 0, 1);    
+}
+.mng-excluir-membro>img{
+    transition: 0.5s;
+}
+.mng-excluir-membro:hover>img {
+    filter:invert(100%);
+}
+
+
+#modalNewResponsavel{
+    transition: 0.75s;
+    padding: 35px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: linear-gradient(75deg, #192a56, #2f3640);
+    height: 400px;
+    width: 500px;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.adm-management-addResponsavel{
+    font-size: 0.5em;
+}
+
+#sltResponsavel{
+    width: 100%;
+}
+
+.btn-newResponsavel{
+    margin-top: 100px;
+}
+
+.exitModalNewResponsavel{
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 90%;
+}
+
+.btn-newResponsavel{
+    color: #fff;
+    transition: 0.25s all;
+    padding: 7.5px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color:  #636e72;
+    
+}
+
+.btn-newResponsavel:hover{
+    color: #fff;
+    background-color:  #2d3436;
 }
