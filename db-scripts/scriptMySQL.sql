@@ -90,6 +90,9 @@ CALL sp_CadProjeto ('Festa Junina', 'Em comemoração ao dia de São João, tere
 
 
 
+
+
+
 /*	CRIAR O VÍNCULO DE USUÁRIO NO PROJETO [RESPONSÁVEL/INTEGRANTE] */
 /* helper: CodUsuario, codProjeto, isResponsable[bool]*/
 DELIMITER //
@@ -172,6 +175,8 @@ DELIMITER ;
 
 
 
+
+
 /*CRIAR MÉTODO: REMOVER/ADICIONAR CARGO DE RESPONSÁVEL */
 DELIMITER //
 	CREATE PROCEDURE sp_SwitchResponsavel(
@@ -187,26 +192,25 @@ DELIMITER ;
 
 
 
-/*helper SwitchResponsavel: CodUsuario, CodProjeto, isResponsable */
+/*helper SwitchResponsavel: CodUsuario, CodProjeto, isResponsable 
 CALL sp_SwitchResponsavel (2,1,1);
 CALL sp_SwitchResponsavel (3,2,1);
 CALL sp_SwitchResponsavel (4,3,1);
-
+*/
 
 
 
 /*CRIAR MÉTODO: REMOVER RESPONSÁVEL/INTEGRANTE DO PROJETO  */
+/*helper: codUsuario, codProjeto*/
 DELIMITER //
 	CREATE PROCEDURE sp_RemoveUsuarioProjeto(
 		IN p_codUsuario INT,
 		IN p_codProjeto INT
 	)	
 	BEGIN
-		UPDATE usuarios_projetos UP  SET UP.usuproj_isActive = 0 WHERE UP.codUsuario = p_codUsuario AND UP.codProjeto = p_codProjeto;
+		UPDATE usuarios_projetos UP  SET UP.usuproj_isActive = 0, UP.isResponsable = 0 WHERE UP.codUsuario = p_codUsuario AND UP.codProjeto = p_codProjeto;
 	END //
 DELIMITER ;
-
-
 
 
 
@@ -221,13 +225,12 @@ DELIMITER //
       	SELECT P.idProjeto 'idProjeto', P.nome 'Projeto', U.nome 'Usuário', UP.isResponsable 'Responsável'  
 			FROM USUARIOS U 
 			INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario 
-			INNER JOIN projetos P ON P.idProjeto = UP.codProjeto WHERE U.idUsuario = p_idUsuario AND P.projeto_isActive =  1;
-
+			INNER JOIN projetos P ON P.idProjeto = UP.codProjeto WHERE U.idUsuario = p_idUsuario AND P.projeto_isActive =  1 AND UP.usuproj_isActive = 1;
 	END //
 
 DELIMITER ;
 
-CALL sp_meusProjetos(2);
+
 
 
 
@@ -252,7 +255,7 @@ DELIMITER //
 
 DELIMITER ;
 
-CALL sp_MinhasTarefas(2,1);
+
 
 
 
@@ -276,10 +279,6 @@ END//
 DELIMITER ;
 
 
-CALL sp_NovaTarefa (1,3,'Tarefa: Levar 4L de refrigerantes!', CURDATE(), '2023-06-13', 1 );
-
-
-
 
 
 /*CRIAR PROCEDURE (RESPONSÁVEL): VER TAREFAS DA EQUIPE: PROJETO - NOME DO USUÁRIO - DESC TAREFA - DATA TÉRMINO - STATUS TAREFA*/
@@ -293,15 +292,9 @@ DELIMITER //
 		FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario
 		INNER JOIN projetos P ON P.idProjeto = UP.codProjeto 
 		INNER JOIN tarefas T ON T.codProjeto = P.idProjeto AND T.codUsuario = U.idUsuario
-		WHERE P.idProjeto = p_idProjeto;
+		WHERE P.idProjeto = p_idProjeto AND UP.usuproj_isActive = 1 AND P.projeto_isActive = 1;
 	END //
 DELIMITER ;
-
-CALL sp_VerTarefasEquipe(1);
-
-
-
-
 
 /*ALTERAR SITUAÇÃO DA TAREFA*/
 /* 
@@ -320,11 +313,6 @@ DELIMITER //
 	END //
 DELIMITER ;
 
-CALL sp_alterarSituacaoTarefa(2, 3);
-
-
-
-
 /*	PROCEDURE: ADD COMMENT [CREATE] */
 /*helper: codTarefa, Texto  */
 DELIMITER //
@@ -342,4 +330,37 @@ CALL sp_AdicionarComentario(1,'Fui ao mercado porecatu e não encontrei a Pipoca
 	
 CALL sp_MinhasTarefas(2,1);
 	
-	
+
+DELIMITER //
+				
+CREATE PROCEDURE sp_UsuariosNaoVinculados(
+	IN p_codProjeto INT 
+)
+BEGIN						
+	SELECT * FROM usuarios U  WHERE NOT EXISTS 
+	(
+		SELECT * FROM usuarios_projetos UP  WHERE UP.codProjeto = p_codProjeto AND UP.codUsuario = U.idUsuario AND UP.usuproj_isActive = 1
+	);
+
+END//
+
+DELIMITER ;
+		
+
+DELIMITER //
+CREATE PROCEDURE sp_selectUsuarios(
+	IN p_idProjeto INT
+)
+BEGIN
+SELECT U.nome, U.idUsuario FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario 
+								 INNER JOIN projetos P ON P.idProjeto = UP.codProjeto 
+								 WHERE P.idProjeto = p_idProjeto AND UP.usuproj_isActive = 1 AND P.projeto_isActive = 1;
+END //
+DELIMITER ;
+
+							
+							
+							
+							
+							
+							
