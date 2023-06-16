@@ -238,33 +238,39 @@
 
     </div>
 
-    <div class="management-responsavel">
-        <p> Tarefas da Equipe </p>
+    <?php
+    if ($_REQUEST['isResponsable'] == 1) {
+        print "
+            <div class='management-responsavel'>
+            <p> Tarefas da Equipe </p>
 
-        <div class="management-responsavel-content fundoTarefasEquipe">
-            <?php
+            <div class='management-responsavel-content fundoTarefasEquipe'>" .
 
             $conn->close();
-            $conn = new mysqli(HOST, USER, PASS, DB);
+        $conn = new mysqli(HOST, USER, PASS, DB);
 
-            $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(" . $_SESSION['s_idProjeto'] . ")";
+        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(" . $_SESSION['s_idProjeto'] . ")";
 
-            $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
+        $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
 
-            if ($retornoTarefasEquipe->num_rows > 0) {
+        if ($retornoTarefasEquipe->num_rows > 0) {
 
-                while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
-                    print " 
-                        <div class='management-responsavel-option'>
-                            <p> " . $rowTarefaEquipe['Tarefa'] . " </p>                            
-                            </div>                      
-                        ";
-                }
+            while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
+                print " 
+                            <div class='management-responsavel-option'>
+                                <p> " . $rowTarefaEquipe['Tarefa'] . " </p>                            
+                                </div>                      
+                            ";
             }
-            ?>
+        }
+        "                
+            </div>
         </div>
+        ";
+    }
+    ?>
 
-    </div>
+
 
 </body>
 
