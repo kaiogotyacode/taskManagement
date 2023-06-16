@@ -507,3 +507,31 @@ nav{
     cursor: pointer;
 }
 
+.responsible-management{
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    height: 100px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 5px;
+}
+
+.btn-gerenciar{
+    border-radius: 10px;
+    padding: 25px;
+    transition: 0.5s;
+    width: 100%;
+    font-family: geomatrix;
+    font-size: 1.7em;
+    background-color: #2d3436;
+    border: 1px solid #fff;
+    color: #fff;
+}
+.btn-gerenciar:hover{
+    background-color: #fff;
+    border: 1px solid #2d3436;
+    color: #2d3436;
+
+}

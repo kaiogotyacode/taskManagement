@@ -87,6 +87,17 @@ $dataTermino = $objProjeto['dataTermino'];
         </form>
     </div>
 
+    <?php
+        if($_REQUEST['isResponsable'] == 1){
+            print "
+                    <div class='responsible-management'>
+                        <button class='btn-gerenciar'>Gerenciar Tarefas</button>
+                    </div>
+            ";
+        }
+    ?>
+  
+
     <div class="management-responsavel">
         <p> Responsáveis </p>
 
@@ -146,17 +157,17 @@ $dataTermino = $objProjeto['dataTermino'];
                 $conn->close();
                 $conn = new mysqli(HOST,USER,PASS,DB);
                 
-                $queryIntegrante = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 0 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
+                $queryTarefas = "CALL sp_MinhasTarefas(".$_SESSION['s_idUsuario'].", ".$_SESSION['s_idProjeto'].")";
                 
                                
-                $retornoIntegrante = $conn->query($queryIntegrante);          
+                $retornoTarefas = $conn->query($queryTarefas);          
                 
                 if ($retornoIntegrante->num_rows > 0) {
 
-                    while ($rowIntegrante = $retornoIntegrante->fetch_assoc()) {
+                    while ($rowTarefa = $retornoIntegrante->fetch_assoc()) {
                         print " 
                         <div class='management-responsavel-option'>
-                            <p> " . $rowIntegrante['nome'] . " </p>                            
+                            <p> " . $rowTarefa['Tarefa'] . " </p>                            
                         </div>
                         ";
                     }
