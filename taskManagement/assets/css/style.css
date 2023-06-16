@@ -232,6 +232,7 @@ nav{
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0, .75);
+    filter: blur(50px);
 }
 
 .modalHeader{
@@ -394,7 +395,7 @@ nav{
 }
 
 
-#modalNewResponsavel, #modalNewIntegrante{
+#modalNewResponsavel, #modalNewIntegrante, #modalNewTask{
     transition: 0.75s;
     padding: 35px;
     position: fixed;
@@ -415,6 +416,16 @@ nav{
     background: linear-gradient(75deg, #f9ca24, #f6e58d);
 }
 
+#modalNewTask{
+    background: linear-gradient(180deg, #f7f1e3, #aaa69d);
+    height: auto;
+}
+#modalNewTask > .modalHeader{
+    margin-top: -40px;
+    color: #000;
+}
+
+
 .modalHeaderIntegrante{
     color: #000;
 }
@@ -431,15 +442,15 @@ nav{
     margin-top: 80px;
 }
 
-.exitModalNewResponsavel{
+.exitModalNewResponsavel, .exitModalNewTask{
     border-radius: 50%;
     cursor: pointer;
     margin-left: 90%;
 }
 
-.btn-newResponsavel, .btn-newIntegrante {
+.btn-newResponsavel, .btn-newIntegrante, .btn-newTask {
     color: #fff;
-    transition: 0.25s all;
+    transition: 0.55s all;
     padding: 7.5px;
     border-radius: 5px;
     border: 1px solid #000;
@@ -463,6 +474,19 @@ nav{
     color: #000;
     background-color:  #f1c40f;
 }
+
+.btn-newTask{
+    border: 1px solid #fff;
+    background-color:  #3d3d3d;
+    color: #fff;
+}
+
+.btn-newTask:hover{
+    color: #3d3d3d;
+    background-color:  #fff;
+
+}
+
 
 
 .btnAddMember-content{
@@ -503,9 +527,18 @@ nav{
 .fundoMinhasTarefas{
     background: linear-gradient(180deg, #6ab04c, #badc58);    
 }
+.fundoTarefasEquipe{
+    background: linear-gradient(180deg, #2f3640, #7f8fa6);    
+}
+.fundoTarefasEquipe> .management-responsavel-option{
+    color: #fff;
+}
+
+.fundoTarefasEquipe> .management-responsavel-option,
 .fundoMinhasTarefas> .management-responsavel-option{
     cursor: pointer;
 }
+
 
 .responsible-management{
     display: flex;

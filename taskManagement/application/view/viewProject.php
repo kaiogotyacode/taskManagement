@@ -1,4 +1,5 @@
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,28 @@
     <script src="../../assets/js/script.js"></script>
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
+
 <body>
-<?php 
-session_start();
-include('../../conexao.php');
+    <?php
+    session_start();
+    include('../../conexao.php');
 
-if (!empty($_REQUEST["idProjeto"])) {
-    $_SESSION["s_idProjeto"]  =  $_REQUEST["idProjeto"];
-}
+    if (!empty($_REQUEST["idProjeto"])) {
+        $_SESSION["s_idProjeto"]  =  $_REQUEST["idProjeto"];
+    }
 
-$queryViewProject = "SELECT * FROM Projetos WHERE idProjeto = " . $_SESSION['s_idProjeto'];
-$retornoViewProject = $conn->query($queryViewProject);
+    $queryViewProject = "SELECT * FROM Projetos WHERE idProjeto = " . $_SESSION['s_idProjeto'];
+    $retornoViewProject = $conn->query($queryViewProject);
 
-$objProjeto = $retornoViewProject->fetch_assoc();
+    $objProjeto = $retornoViewProject->fetch_assoc();
 
-$nome = $objProjeto['nome'];
-$descricao = $objProjeto['descricao'];
-$dataInicio = $objProjeto['dataInicio'];
-$dataTermino = $objProjeto['dataTermino'];
+    $nome = $objProjeto['nome'];
+    $descricao = $objProjeto['descricao'];
+    $dataInicio = $objProjeto['dataInicio'];
+    $dataTermino = $objProjeto['dataTermino'];
 
-?>
-<nav>
+    ?>
+    <nav>
         <div onclick="window.location.href='./../home.php'" class="divTitulo">
             <img src="../../assets/images/calendarIcon.png" height="50" width="50" />
             <h1 class="tituloNav">Task Management</h1>
@@ -82,27 +84,86 @@ $dataTermino = $objProjeto['dataTermino'];
                     <label class="management-label"> Data Término: </label>
                     <input class="form-control management-adjust-data" name="mngDataTermino" id="mngDataTermino" disabled value="<?php print $dataTermino; ?>" type="date" />
                 </div>
-           
+
             </div>
         </form>
     </div>
 
     <?php
-        if($_REQUEST['isResponsable'] == 1){
-            print "
+    if ($_REQUEST['isResponsable'] == 1) {
+        print "
                     <div class='responsible-management'>
-                        <button class='btn-gerenciar'>Gerenciar Tarefas</button>
+                        <button class='btn-gerenciar' onclick='openModalManageTask()'>Gerenciar Tarefas</button>
                     </div>
             ";
-        }
+    }
     ?>
-  
+
+    <!-- Modal  -->
+    <div id="fade">
+        &nbsp;
+    </div>
+    <div id="modalNewTask">
+
+        <div class="exitModalNewTask" onclick="exitModalNewTask()">
+            <img src="../../assets/images/exitIcon.png" height="50" width="50" />
+        </div>
+
+        <div class="modalHeader">
+            <p> Nova Tarefa </p>
+        </div>
+        <div class="modalBody newProjectContainer">
+            <form method="POST" action="newTask.php" onsubmit="return validarNewTask()">
+                <div class="row">
+
+                    <div class="col-12">
+                        <label style="color: #fff;font-family: geomatrix" for="NPNome">Selecione um membro da equipe: </label>
+                        <select name="sltRespTarefa" class="form-select" id="sltRespTarefa">
+                            <option value="0" selected>[Selecione uma opção]</option>
+
+                            <?php
+                            $queryUsuarios = "CALL sp_selectUsuarios(" . $_SESSION['s_idProjeto'] . ")";
+                            $retornoUsuarios = $conn->query($queryUsuarios);
+
+                            if ($retornoUsuarios && $retornoUsuarios->num_rows > 0) {
+                                while ($rowUsuarios = $retornoUsuarios->fetch_assoc()) {
+                                    print "<option value='" . $rowUsuarios['idUsuario'] . "'> " . $rowUsuarios['nome'] . "</option>";
+                                }
+                            }
+
+                            ?>
+
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label style="color: #000;font-family: geomatrix" for="NTDescricao">Descrição da Tarefa: </label>
+                        <textarea class="form-control" name="NTDescricao" id="NTDescricao" type="text" placeholder="Digite a descrição..."> </textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label style="color: #000;font-family: geomatrix" for="NTDataTermino">Data de Término: </label>
+                        <input class="form-control" name="NTDataTermino" id="NTDataTermino" type="date" />
+                    </div>
+
+                    <div class="align-submit-button">
+                        <input type="submit" class="btn-newTask" value="Cadastrar" onclick="return false()" />
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
 
     <div class="management-responsavel">
         <p> Responsáveis </p>
 
         <div class="management-responsavel-content fundoResponsaveis">
             <?php
+            $conn->close();
+            $conn = new mysqli(HOST, USER, PASS, DB);
+
             $queryResponsavel = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 1 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
 
             $retornoResponsavel = $conn->query($queryResponsavel);
@@ -124,25 +185,25 @@ $dataTermino = $objProjeto['dataTermino'];
 
         <div class="management-responsavel-content fundoIntegrantes">
             <?php
-                
-                $conn->close();
-                $conn = new mysqli(HOST,USER,PASS,DB);
-                
-                $queryIntegrante = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 0 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
-                
-                               
-                $retornoIntegrante = $conn->query($queryIntegrante);          
-                
-                if ($retornoIntegrante->num_rows > 0) {
 
-                    while ($rowIntegrante = $retornoIntegrante->fetch_assoc()) {
-                        print " 
+            $conn->close();
+            $conn = new mysqli(HOST, USER, PASS, DB);
+
+            $queryIntegrante = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 0 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
+
+
+            $retornoIntegrante = $conn->query($queryIntegrante);
+
+            if ($retornoIntegrante->num_rows > 0) {
+
+                while ($rowIntegrante = $retornoIntegrante->fetch_assoc()) {
+                    print " 
                         <div class='management-responsavel-option'>
                             <p> " . $rowIntegrante['nome'] . " </p>                            
                         </div>
                         ";
-                    }
                 }
+            }
             ?>
         </div>
 
@@ -153,29 +214,64 @@ $dataTermino = $objProjeto['dataTermino'];
 
         <div class="management-responsavel-content fundoMinhasTarefas">
             <?php
-                
-                $conn->close();
-                $conn = new mysqli(HOST,USER,PASS,DB);
-                
-                $queryTarefas = "CALL sp_MinhasTarefas(".$_SESSION['s_idUsuario'].", ".$_SESSION['s_idProjeto'].")";
-                
-                               
-                $retornoTarefas = $conn->query($queryTarefas);          
-                
-                if ($retornoIntegrante->num_rows > 0) {
 
-                    while ($rowTarefa = $retornoIntegrante->fetch_assoc()) {
-                        print " 
+            $conn->close();
+            $conn = new mysqli(HOST, USER, PASS, DB);
+
+            $queryTarefas = "CALL sp_MinhasTarefas(" . $_SESSION['s_idUsuario'] . "," . $_SESSION['s_idProjeto'] . ")";
+
+
+            $retornoTarefas = $conn->query($queryTarefas);
+
+            if ($retornoTarefas->num_rows > 0) {
+
+                while ($rowTarefa = $retornoTarefas->fetch_assoc()) {
+                    print " 
                         <div class='management-responsavel-option'>
                             <p> " . $rowTarefa['Tarefa'] . " </p>                            
                         </div>
                         ";
-                    }
                 }
+            }
             ?>
         </div>
 
     </div>
 
+    <?php
+    if ($_REQUEST['isResponsable'] == 1) {
+        print "
+            <div class='management-responsavel'>
+            <p> Tarefas da Equipe </p>
+
+            <div class='management-responsavel-content fundoTarefasEquipe'>" .
+
+            $conn->close();
+        $conn = new mysqli(HOST, USER, PASS, DB);
+
+        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(" . $_SESSION['s_idProjeto'] . ")";
+
+        $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
+
+        if ($retornoTarefasEquipe->num_rows > 0) {
+
+            while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
+                print " 
+                            <div class='management-responsavel-option'>
+                                <p> " . $rowTarefaEquipe['Tarefa'] . " </p>                            
+                                </div>                      
+                            ";
+            }
+        }
+        "                
+            </div>
+        </div>
+        ";
+    }
+    ?>
+
+
+
 </body>
+
 </html>
