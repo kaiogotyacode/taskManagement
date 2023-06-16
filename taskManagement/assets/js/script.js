@@ -65,7 +65,29 @@ window.addEventListener("load", () => {
         fade.style.cssText += 'opacity: 1; pointer-events: all;';
 
     });
+
+   
 });
+
+function openModalNewResponsavel() {
+     
+        var modal = document.getElementById("modalNewResponsavel");
+        var fade = document.getElementById("fade");    
+    
+        modal.style.cssText += 'opacity: 1; pointer-events: all;';
+        fade.style.cssText += 'opacity: 1; pointer-events: all;';    
+  
+}
+
+function openModalNewIntegrante() {
+     
+    var modal = document.getElementById("modalNewIntegrante");
+    var fade = document.getElementById("fade");    
+
+    modal.style.cssText += 'opacity: 1; pointer-events: all;';
+    fade.style.cssText += 'opacity: 1; pointer-events: all;';    
+
+}
 
 
 function exitModalNewProject() {
@@ -76,6 +98,25 @@ function exitModalNewProject() {
     modal.style.cssText += 'opacity: 0; pointer-events: none;';
     fade.style.cssText += 'opacity: 0; pointer-events: none;';
 }
+
+function exitModalNewResponsavel() {
+    var modal = document.getElementById("modalNewResponsavel");
+    var fade = document.getElementById("fade");
+
+
+    modal.style.cssText += 'opacity: 0; pointer-events: none;';
+    fade.style.cssText += 'opacity: 0; pointer-events: none;';
+}
+
+function exitModalNewIntegrante() {
+    var modal = document.getElementById("modalNewIntegrante");
+    var fade = document.getElementById("fade");
+
+
+    modal.style.cssText += 'opacity: 0; pointer-events: none;';
+    fade.style.cssText += 'opacity: 0; pointer-events: none;';
+}
+
 
 
 function validarNewProject() {
@@ -114,7 +155,7 @@ function validarNewProject() {
 
 
 
-function alterarProjeto(idProjeto) {
+function alterarProjeto() {
 
     var btnAlteraProjeto = document.querySelector("#btnAlteraProjeto");
 
@@ -139,4 +180,31 @@ function excluirProjeto(idProjeto) {
     if (confirm("Você realmente deseja excluir o projeto? ")) {
         window.location.href = "../../taskManagement/application/excluirProjeto.php?idProjeto=" + idProjeto;
     }
+}
+
+
+function excluirUsuarioProjeto(idUsuario, idProjeto){
+    if (confirm("Você realmente deseja remover o usuário desse projeto?")) {
+        window.location.href = "../../taskManagement/application/excluirUsuarioProjeto.php?idProjeto=" + idProjeto +"&idUsuario="+ idUsuario;
+    }
+}
+
+function validarNewResponsavel(){
+    var selectedUser = document.querySelector('#sltResponsavel');
+
+    if(selectedUser.value != 0)
+        return true;    
+
+    alert('Selecione um responsável!');
+    return false;
+}
+
+function validarNewIntegrante(){
+    var selectedUser = document.querySelector('#sltIntegrante');
+
+    if(selectedUser.value != 0)
+        return true;    
+
+    alert('Selecione um integrante!');
+    return false;
 }

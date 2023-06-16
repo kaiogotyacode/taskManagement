@@ -14,7 +14,9 @@
 session_start();
 include('../conexao.php');
 
-$_SESSION["s_idProjeto"]  =  $_REQUEST["idProjeto"];
+if (!empty($_REQUEST["idProjeto"])) {
+    $_SESSION["s_idProjeto"]  =  $_REQUEST["idProjeto"];
+}
 
 $queryManagement = "SELECT * FROM Projetos WHERE idProjeto = " . $_SESSION['s_idProjeto'];
 $retornoManagement = $conn->query($queryManagement);
@@ -70,13 +72,13 @@ $dataTermino = $objProjeto['dataTermino'];
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/descricaoIcon.png" />
                     <label class="management-label"> Descrição: </label>
-                    <textarea class="form-control management-adjust" name="mngDescricao"  id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
+                    <textarea class="form-control management-adjust" name="mngDescricao" id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
                 </div>
 
                 <div class="management-row">
                     <img class="management-img-adjust" height="50" width="50" src="../assets/images/dateIcon.png" />
                     <label class="management-label"> Data Início: </label>
-                    <input class="form-control management-adjust-data" name="mngDataInicio"  id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
+                    <input class="form-control management-adjust-data" name="mngDataInicio" id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
                 </div>
 
                 <div class="management-row">
@@ -91,9 +93,174 @@ $dataTermino = $objProjeto['dataTermino'];
                 </div>
             </div>
         </form>
+    </div>
 
+
+    <div class="management-responsavel">
+        <p> Responsáveis </p>
+
+        <div class="management-responsavel-content">
+            <?php
+            $queryResponsavel = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 1 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
+
+            $retornoResponsavel = $conn->query($queryResponsavel);
+            if ($retornoResponsavel->num_rows > 0) {
+                while ($rowResponsavel = $retornoResponsavel->fetch_assoc()) {
+                    print " 
+                    <div class='management-responsavel-option'>
+                        <p> " . $rowResponsavel['nome'] . " </p>
+                        <div class='mng-excluir-membro' onclick=\"excluirUsuarioProjeto(" . $rowResponsavel['idUsuario'] . "," . $rowResponsavel['codProjeto'] . ")\">
+                            <img src='../assets/images/binIcon.png' height='50' width='50' />
+                        </div>
+                    </div>
+                    ";
+                }
+            }
+
+            ?>
+
+
+            <div class="btnAddMember-content">
+                <button id="AddNewResponsavel" onclick="return openModalNewResponsavel()" class="btnAddMember"> Adicionar Responsável </button>
+            </div>
+
+            <div class="adm-management-addResponsavel">
+
+                <div id="modalNewResponsavel">
+                    <div class="exitModalNewResponsavel" onclick="exitModalNewResponsavel()">
+                        <img src="../assets/images/exitIcon.png" height="50" width="50" />
+                    </div>
+
+                    <div class="modalHeader">
+                        <p> Novo Responsável </p>
+                    </div>
+                    <div class="modalBody newResponsavelContainer">
+                        <form method="POST" action="../application/newResponsavel.php?" onsubmit="return validarNewResponsavel()">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <label style="color: #fff;font-family: geomatrix" for="NPNome">Selecione um novo responsável: </label>
+                                    <select name="sltResponsavel" class="form-select" id="sltResponsavel">
+                                        <option value="0" selected>[Selecione uma opção]</option>
+
+                                        <?php
+                                            $queryUsuariosNaoVinculados = "CALL sp_UsuariosNaoVinculados(" . $_SESSION['s_idProjeto'] . ")";
+                                            $retornoUsuariosNaoVinculados = $conn->query($queryUsuariosNaoVinculados);
+
+                                            if ($retornoUsuariosNaoVinculados && $retornoUsuariosNaoVinculados->num_rows > 0) {
+                                                while ($rowUsuarios = $retornoUsuariosNaoVinculados->fetch_assoc()) {
+                                                    print "<option value='" . $rowUsuarios['idUsuario'] . "'> " . $rowUsuarios['nome'] . "</option>";
+                                                }
+                                            }
+
+                                        ?>
+
+                                    </select>
+                                </div>
+
+                                <div class="align-submit-button">
+                                    <input type="submit" class="btn-newResponsavel" value="Cadastrar" />
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="fade">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
 
     </div>
+
+
+    <div class="management-responsavel">
+        <p> Integrantes </p>
+
+        <div class="management-responsavel-content">
+            <?php
+                
+                $conn->close();
+                $conn = new mysqli(HOST,USER,PASS,DB);
+                
+                $queryIntegrante = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 0 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
+                
+                               
+                $retornoIntegrante = $conn->query($queryIntegrante);          
+                
+                if ($retornoIntegrante->num_rows > 0) {
+
+                    while ($rowIntegrante = $retornoIntegrante->fetch_assoc()) {
+                        print " 
+                        <div class='management-responsavel-option'>
+                            <p> " . $rowIntegrante['nome'] . " </p>
+                            <div class='mng-excluir-membro' onclick=\"excluirUsuarioProjeto(" . $rowIntegrante['idUsuario'] . "," . $rowIntegrante['codProjeto'] . ")\">
+                                <img src='../assets/images/binIcon.png' height='50' width='50' />
+                            </div>
+                        </div>
+                        ";
+                    }
+                }
+            ?>
+
+
+            <div class="btnAddMember-content">
+                <button id="AddNewResponsavel" onclick="return openModalNewIntegrante()" class="btnAddMember"> Adicionar Integrante </button>
+            </div>
+         
+            <div class="adm-management-addResponsavel">
+
+                <div id="modalNewIntegrante">
+                    <div class="exitModalNewResponsavel" onclick="exitModalNewIntegrante()">
+                        <img src="../assets/images/exitIcon.png" height="50" width="50" />
+                    </div>
+
+                    <div class="modalHeader modalHeaderIntegrante">
+                        <p> Novo Integrante </p>
+                    </div>
+                    <div class="modalBody newResponsavelContainer">
+                        <form method="POST" action="../application/newIntegrante.php?" onsubmit="return validarNewIntegrante()">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <label style="color: #fff;font-family: geomatrix" for="NPNome">Selecione um novo integrante: </label>
+                                    <select name="sltIntegrante" class="form-select" id="sltIntegrante">
+                                        <option value="0" selected>[Selecione uma opção]</option>
+
+                                        <?php
+                                            $queryUsuariosNaoVinculados = "CALL sp_UsuariosNaoVinculados(" . $_SESSION['s_idProjeto'] . ")";
+                                            $retornoUsuariosNaoVinculados = $conn->query($queryUsuariosNaoVinculados);
+
+                                            if ($retornoUsuariosNaoVinculados && $retornoUsuariosNaoVinculados->num_rows > 0) {
+                                                while ($rowUsuarios = $retornoUsuariosNaoVinculados->fetch_assoc()) {
+                                                    print "<option value='" . $rowUsuarios['idUsuario'] . "'> " . $rowUsuarios['nome'] . "</option>";
+                                                }
+                                            }
+
+                                        ?>
+
+                                    </select>
+                                </div>
+
+                                <div class="align-submit-button">
+                                    <input type="submit" class="btn-newIntegrante" value="Cadastrar" />
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="fade">
+                    &nbsp;
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
 
 
 </body>
