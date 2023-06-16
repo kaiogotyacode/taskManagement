@@ -87,7 +87,84 @@ $dataTermino = $objProjeto['dataTermino'];
         </form>
     </div>
 
-    <h1> teste, pau na branch </h1>
+    <div class="management-responsavel">
+        <p> Responsáveis </p>
+
+        <div class="management-responsavel-content fundoResponsaveis">
+            <?php
+            $queryResponsavel = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 1 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
+
+            $retornoResponsavel = $conn->query($queryResponsavel);
+            if ($retornoResponsavel->num_rows > 0) {
+                while ($rowResponsavel = $retornoResponsavel->fetch_assoc()) {
+                    print " 
+                    <div class='management-responsavel-option'>
+                        <p> " . $rowResponsavel['nome'] . " </p>                      
+                    </div>
+                    ";
+                }
+            }
+            ?>
+        </div>
+    </div>
+
+    <div class="management-responsavel">
+        <p> Integrantes </p>
+
+        <div class="management-responsavel-content fundoIntegrantes">
+            <?php
+                
+                $conn->close();
+                $conn = new mysqli(HOST,USER,PASS,DB);
+                
+                $queryIntegrante = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 0 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
+                
+                               
+                $retornoIntegrante = $conn->query($queryIntegrante);          
+                
+                if ($retornoIntegrante->num_rows > 0) {
+
+                    while ($rowIntegrante = $retornoIntegrante->fetch_assoc()) {
+                        print " 
+                        <div class='management-responsavel-option'>
+                            <p> " . $rowIntegrante['nome'] . " </p>                            
+                        </div>
+                        ";
+                    }
+                }
+            ?>
+        </div>
+
+    </div>
+
+    <div class="management-responsavel">
+        <p> Minhas Tarefas </p>
+
+        <div class="management-responsavel-content fundoMinhasTarefas">
+            <?php
+                
+                $conn->close();
+                $conn = new mysqli(HOST,USER,PASS,DB);
+                
+                $queryIntegrante = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 0 and UP.codProjeto = " . $_SESSION['s_idProjeto'];
+                
+                               
+                $retornoIntegrante = $conn->query($queryIntegrante);          
+                
+                if ($retornoIntegrante->num_rows > 0) {
+
+                    while ($rowIntegrante = $retornoIntegrante->fetch_assoc()) {
+                        print " 
+                        <div class='management-responsavel-option'>
+                            <p> " . $rowIntegrante['nome'] . " </p>                            
+                        </div>
+                        ";
+                    }
+                }
+            ?>
+        </div>
+
+    </div>
 
 </body>
 </html>

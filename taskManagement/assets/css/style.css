@@ -482,3 +482,28 @@ nav{
 .btnAddMember:hover{
     background-color: #2071ce;
 }
+
+.fundoResponsaveis{
+    text-align: center;
+    background: linear-gradient(180deg, #192a56, #2f3640 );
+    color: #fff;
+}
+
+.fundoResponsaveis> .management-responsavel-option,
+.fundoIntegrantes> .management-responsavel-option,
+.fundoMinhasTarefas> .management-responsavel-option
+{
+    justify-content: center;
+}
+
+.fundoIntegrantes{
+    background: linear-gradient(180deg, #f9ca24, #f6e58d);
+    color: #000;    
+}
+.fundoMinhasTarefas{
+    background: linear-gradient(180deg, #6ab04c, #badc58);    
+}
+.fundoMinhasTarefas> .management-responsavel-option{
+    cursor: pointer;
+}
+
