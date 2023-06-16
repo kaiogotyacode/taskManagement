@@ -232,6 +232,7 @@ nav{
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0, .75);
+    filter: blur(50px);
 }
 
 .modalHeader{
@@ -503,9 +504,18 @@ nav{
 .fundoMinhasTarefas{
     background: linear-gradient(180deg, #6ab04c, #badc58);    
 }
+.fundoTarefasEquipe{
+    background: linear-gradient(180deg, #2f3640, #7f8fa6);    
+}
+.fundoTarefasEquipe> .management-responsavel-option{
+    color: #fff;
+}
+
+.fundoTarefasEquipe> .management-responsavel-option,
 .fundoMinhasTarefas> .management-responsavel-option{
     cursor: pointer;
 }
+
 
 .responsible-management{
     display: flex;
