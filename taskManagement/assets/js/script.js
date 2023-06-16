@@ -134,7 +134,7 @@ function validarNewProject() {
 
 
 
-function alterarProjeto(idProjeto) {
+function alterarProjeto() {
 
     var btnAlteraProjeto = document.querySelector("#btnAlteraProjeto");
 
@@ -158,5 +158,12 @@ function alterarProjeto(idProjeto) {
 function excluirProjeto(idProjeto) {
     if (confirm("Você realmente deseja excluir o projeto? ")) {
         window.location.href = "../../taskManagement/application/excluirProjeto.php?idProjeto=" + idProjeto;
+    }
+}
+
+
+function excluirUsuarioProjeto(idUsuario, idProjeto){
+    if (confirm("Você realmente deseja remover o usuário desse projeto?")) {
+        window.location.href = "../../taskManagement/application/excluirUsuarioProjeto.php?idProjeto=" + idProjeto +"&idUsuario="+ idUsuario;
     }
 }

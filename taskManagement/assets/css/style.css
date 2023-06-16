@@ -340,7 +340,7 @@ nav{
 
 .management-responsavel-content{
     background-color: #78d2d83d;
-    min-height: 500px;
+    min-height: 250px;
     height: auto;
     width: 80vw;
     margin-left: 10vw;
@@ -439,4 +439,21 @@ nav{
 .btn-newResponsavel:hover{
     color: #fff;
     background-color:  #2d3436;
+}
+
+.btnAddMember-content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.btnAddMember{    
+    margin-top: 100px;
+    transition: 0.5s;
+    background-color: #052c50;
+    width: 30%;
+    border-radius: 5px;
+    color: #fff;
+}
+.btnAddMember:hover{
+    background-color: #2071ce;
 }

@@ -14,7 +14,9 @@
 session_start();
 include('../conexao.php');
 
-$_SESSION["s_idProjeto"]  =  $_REQUEST["idProjeto"];
+if(!empty($_REQUEST["idProjeto"])){
+    $_SESSION["s_idProjeto"]  =  $_REQUEST["idProjeto"];
+}
 
 $queryManagement = "SELECT * FROM Projetos WHERE idProjeto = " . $_SESSION['s_idProjeto'];
 $retornoManagement = $conn->query($queryManagement);
@@ -99,20 +101,34 @@ $dataTermino = $objProjeto['dataTermino'];
 
         <div class="management-responsavel-content">
 
-            <div class="management-responsavel-option">
-                <p> Joaquim Carneiro da Silva </p>
-                <div class="mng-excluir-membro" onclick="alert('Excluir')">
-                    <img src="../assets/images/binIcon.png" height="50" width="50" />
-                </div>
-            </div>
 
-            <button id="AddNewResponsavel" onclick="return openModalNewResponsavel()" class="btn-newResponsavel"> Adicionar Responsável </button>
+        <?php 
+            $queryResponsavel = "SELECT * FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario =  UP.codUsuario WHERE UP.usuproj_isActive = 1 AND UP.isResponsable = 1 and UP.codProjeto = ". $_SESSION['s_idProjeto'];
+
+            $retornoResponsavel = $conn->query($queryResponsavel);
+            if($retornoResponsavel->num_rows >0){
+                while($rowResponsavel = $retornoResponsavel->fetch_assoc()){
+                    print " 
+                    <div class='management-responsavel-option'>
+                        <p> ". $rowResponsavel['nome'] ." </p>
+                        <div class='mng-excluir-membro' onclick=\"excluirUsuarioProjeto(". $rowResponsavel['idUsuario']. ",". $rowResponsavel['codProjeto'] .")\">
+                            <img src='../assets/images/binIcon.png' height='50' width='50' />
+                        </div>
+                    </div>
+                    ";
+                }
+            }
+
+        ?>
+           
+
+            <div class="btnAddMember-content">
+                <button id="AddNewResponsavel" onclick="return openModalNewResponsavel()" class="btnAddMember"> Adicionar Responsável </button>
+            </div>
 
             <div class="adm-management-addResponsavel">
 
-
-                <div id="modalNewResponsavel">
-
+                <div id="modalNewResponsavel">                    
                     <div class="exitModalNewResponsavel" onclick="exitModalNewResponsavel()">
                         <img src="../assets/images/exitIcon.png" height="50" width="50" />
                     </div>
@@ -127,14 +143,25 @@ $dataTermino = $objProjeto['dataTermino'];
                                 <div class="col-12">
                                     <label style="color: #fff;font-family: geomatrix" for="NPNome">Selecione um novo responsável: </label>
                                     <select class="form-select" id="sltResponsavel">
-                                        <option>Arnaldo</option>
+                                        <option value="0" selected>[Selecione uma opção]</option>
+
+                                        <?php
+                                            $queryUsuariosNaoVinculados = "CALL sp_UsuariosNaoVinculados(". $_SESSION['s_idProjeto'] .")";
+                                            $retornoUsuariosNaoVinculados = $conn->query($queryUsuariosNaoVinculados);
+
+                                            if($retornoUsuariosNaoVinculados && $retornoUsuariosNaoVinculados->num_rows > 0){
+                                                while($rowUsuarios = $retornoUsuariosNaoVinculados->fetch_assoc()){
+                                                    print "<option value='".$rowUsuarios['idUsuario']."'> ". $rowUsuarios['nome'] ."</option>";
+                                                }
+                                            }
+                                        ?>
+                                        
                                     </select>
                                 </div>
 
                                 <div class="align-submit-button">
                                     <input type="submit" class="btn-newResponsavel" value="Cadastrar" onclick="return false()" />
                                 </div>
-
 
                             </div>
                         </form>
