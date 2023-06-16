@@ -482,3 +482,56 @@ nav{
 .btnAddMember:hover{
     background-color: #2071ce;
 }
+
+.fundoResponsaveis{
+    text-align: center;
+    background: linear-gradient(180deg, #192a56, #2f3640 );
+    color: #fff;
+}
+
+.fundoResponsaveis> .management-responsavel-option,
+.fundoIntegrantes> .management-responsavel-option,
+.fundoMinhasTarefas> .management-responsavel-option
+{
+    justify-content: center;
+}
+
+.fundoIntegrantes{
+    background: linear-gradient(180deg, #f9ca24, #f6e58d);
+    color: #000;    
+}
+.fundoMinhasTarefas{
+    background: linear-gradient(180deg, #6ab04c, #badc58);    
+}
+.fundoMinhasTarefas> .management-responsavel-option{
+    cursor: pointer;
+}
+
+.responsible-management{
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+    height: 100px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 5px;
+}
+
+.btn-gerenciar{
+    border-radius: 10px;
+    padding: 25px;
+    transition: 0.5s;
+    width: 100%;
+    font-family: geomatrix;
+    font-size: 1.7em;
+    background-color: #2d3436;
+    border: 1px solid #fff;
+    color: #fff;
+}
+.btn-gerenciar:hover{
+    background-color: #fff;
+    border: 1px solid #2d3436;
+    color: #2d3436;
+
+}

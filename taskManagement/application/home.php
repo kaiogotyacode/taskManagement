@@ -147,7 +147,7 @@ include('../conexao.php');
 
                 while ($row = $retorno->fetch_assoc()) {
                     print "
-                        <div class='project-option' onclick=\"alert('" . $row['idProjeto'] . "')\">
+                        <div class='project-option' onclick=\"window.location.href='./view/viewProject.php?idProjeto=".$row['idProjeto']."&isResponsable=".$row['Responsável']."'\">
                             <p> " . $row['Projeto'] . " </p>
                             <div style='";
                     if ($row['Responsável'] == 1) {

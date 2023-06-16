@@ -31,14 +31,17 @@ function hideFromUser() {
     });
 }
 
-function logout() {
+function logout(verify = 0) {
+
 
     if (confirm("Você deseja fazer logout?")) {
-        window.location.href = '../index.php';
-
+        if(verify == 0){
+            window.location.href = '../index.php';
+        } else{
+            window.location.href = '../../index.php';
+        }
     } else {
         return false;
-
     }
 }
 
