@@ -13,7 +13,7 @@
 
     if($returnVerifica->num_rows > 0){
         #true
-        $queryAtualizaResponsavel =  "UPDATE usuarios_projetos SET usuproj_isActive = 1 WHERE codUsuario = ". $idUsuario ." AND codProjeto = ". $idProjeto;
+        $queryAtualizaResponsavel =  "UPDATE usuarios_projetos SET usuproj_isActive = 1,  isResponsable = 1 WHERE codUsuario = ". $idUsuario ." AND codProjeto = ". $idProjeto;
         $retorno1 = $conn->query($queryAtualizaResponsavel);
 
         if($retorno1)

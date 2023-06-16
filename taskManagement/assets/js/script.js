@@ -79,6 +79,17 @@ function openModalNewResponsavel() {
   
 }
 
+function openModalNewIntegrante() {
+     
+    var modal = document.getElementById("modalNewIntegrante");
+    var fade = document.getElementById("fade");    
+
+    modal.style.cssText += 'opacity: 1; pointer-events: all;';
+    fade.style.cssText += 'opacity: 1; pointer-events: all;';    
+
+}
+
+
 function exitModalNewProject() {
     var modal = document.getElementById("modalNewProject");
     var fade = document.getElementById("fade");
@@ -96,6 +107,16 @@ function exitModalNewResponsavel() {
     modal.style.cssText += 'opacity: 0; pointer-events: none;';
     fade.style.cssText += 'opacity: 0; pointer-events: none;';
 }
+
+function exitModalNewIntegrante() {
+    var modal = document.getElementById("modalNewIntegrante");
+    var fade = document.getElementById("fade");
+
+
+    modal.style.cssText += 'opacity: 0; pointer-events: none;';
+    fade.style.cssText += 'opacity: 0; pointer-events: none;';
+}
+
 
 
 function validarNewProject() {
@@ -175,5 +196,15 @@ function validarNewResponsavel(){
         return true;    
 
     alert('Selecione um responsável!');
+    return false;
+}
+
+function validarNewIntegrante(){
+    var selectedUser = document.querySelector('#sltIntegrante');
+
+    if(selectedUser.value != 0)
+        return true;    
+
+    alert('Selecione um integrante!');
     return false;
 }

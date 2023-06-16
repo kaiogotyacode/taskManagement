@@ -345,10 +345,13 @@ nav{
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
-    margin-bottom: 50vh;
     font-size: 2em;
     border-radius: 10px;
     border: 2px solid rgba(255,255,255, .75);
+}
+
+.management-responsavel-content:last-child{
+    margin-bottom: 10vh;
 }
 
 .management-responsavel-option{    
@@ -391,7 +394,7 @@ nav{
 }
 
 
-#modalNewResponsavel{
+#modalNewResponsavel, #modalNewIntegrante{
     transition: 0.75s;
     padding: 35px;
     position: fixed;
@@ -408,6 +411,14 @@ nav{
     pointer-events: none;
 }
 
+#modalNewIntegrante{
+    background: linear-gradient(75deg, #f9ca24, #f6e58d);
+}
+
+.modalHeaderIntegrante{
+    color: #000;
+}
+
 .adm-management-addResponsavel{
     font-size: 0.5em;
 }
@@ -417,7 +428,7 @@ nav{
 }
 
 .btn-newResponsavel{
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .exitModalNewResponsavel{
@@ -426,7 +437,7 @@ nav{
     margin-left: 90%;
 }
 
-.btn-newResponsavel{
+.btn-newResponsavel, .btn-newIntegrante {
     color: #fff;
     transition: 0.25s all;
     padding: 7.5px;
@@ -436,10 +447,23 @@ nav{
     
 }
 
+.btn-newIntegrante{
+    border: 1px solid #000;
+    background-color:  #f6e58d;
+    color: #000;
+    margin-top: 80px;
+}
+
 .btn-newResponsavel:hover{
     color: #fff;
     background-color:  #2d3436;
 }
+
+.btn-newIntegrante:hover {
+    color: #000;
+    background-color:  #f1c40f;
+}
+
 
 .btnAddMember-content{
     width: 100%;
