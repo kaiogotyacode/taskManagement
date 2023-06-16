@@ -92,6 +92,16 @@ function openModalNewIntegrante() {
 
 }
 
+function openModalManageTask() {
+     
+    var modal = document.getElementById("modalNewTask");
+    var fade = document.getElementById("fade");    
+
+    modal.style.cssText += 'opacity: 1; pointer-events: all;';
+    fade.style.cssText += 'opacity: 1; pointer-events: all;';    
+
+}
+
 
 function exitModalNewProject() {
     var modal = document.getElementById("modalNewProject");
@@ -113,6 +123,15 @@ function exitModalNewResponsavel() {
 
 function exitModalNewIntegrante() {
     var modal = document.getElementById("modalNewIntegrante");
+    var fade = document.getElementById("fade");
+
+
+    modal.style.cssText += 'opacity: 0; pointer-events: none;';
+    fade.style.cssText += 'opacity: 0; pointer-events: none;';
+}
+
+function exitModalNewTask() {
+    var modal = document.getElementById("modalNewTask");
     var fade = document.getElementById("fade");
 
 
@@ -156,6 +175,19 @@ function validarNewProject() {
     return true;
 }
 
+
+function validarNewTask(){
+    var usuario = document.querySelector("#sltRespTarefa").value;
+    var descricao = document.querySelector("#NTDescricao").value;
+    var dataTermino = document.querySelector("#NTDataTermino").value;
+
+    if(usuario.length == 0 || descricao.length == 0 || dataTermino.length != 10){
+        alert('Verifique os campos e tente novamente!');
+        return false;
+    }
+
+    return true;
+}
 
 
 function alterarProjeto() {
