@@ -448,6 +448,7 @@ nav{
 }
 .btnAddMember{    
     margin-top: 100px;
+    margin-bottom: 50px;
     transition: 0.5s;
     background-color: #052c50;
     width: 30%;

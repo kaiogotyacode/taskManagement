@@ -137,12 +137,12 @@ $dataTermino = $objProjeto['dataTermino'];
                         <p> Novo Responsável </p>
                     </div>
                     <div class="modalBody newResponsavelContainer">
-                        <form method="POST" action="newResponsavel.php" onsubmit="return validarNewResponsavel()">
+                        <form method="POST" action="../application/newResponsavel.php?"  onsubmit="return validarNewResponsavel()">
                             <div class="row">
 
                                 <div class="col-12">
                                     <label style="color: #fff;font-family: geomatrix" for="NPNome">Selecione um novo responsável: </label>
-                                    <select class="form-select" id="sltResponsavel">
+                                    <select name="sltResponsavel" class="form-select" id="sltResponsavel">
                                         <option value="0" selected>[Selecione uma opção]</option>
 
                                         <?php
@@ -160,7 +160,7 @@ $dataTermino = $objProjeto['dataTermino'];
                                 </div>
 
                                 <div class="align-submit-button">
-                                    <input type="submit" class="btn-newResponsavel" value="Cadastrar" onclick="return false()" />
+                                    <input type="submit" class="btn-newResponsavel" value="Cadastrar"/>
                                 </div>
 
                             </div>

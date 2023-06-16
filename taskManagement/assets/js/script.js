@@ -167,3 +167,13 @@ function excluirUsuarioProjeto(idUsuario, idProjeto){
         window.location.href = "../../taskManagement/application/excluirUsuarioProjeto.php?idProjeto=" + idProjeto +"&idUsuario="+ idUsuario;
     }
 }
+
+function validarNewResponsavel(){
+    var selectedUser = document.querySelector('#sltResponsavel');
+
+    if(selectedUser.value != 0)
+        return true;    
+
+    alert('Selecione um responsável!');
+    return false;
+}
