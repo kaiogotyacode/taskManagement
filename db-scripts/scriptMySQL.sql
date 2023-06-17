@@ -244,8 +244,13 @@ DELIMITER //
 		IN p_idProjeto INT
 	)
 	BEGIN
-
-            SELECT U.idUsuario AS 'Código', U.nome AS 'Usuário', P.nome AS 'Projeto', T.descricao AS 'Tarefa'
+	         SELECT U.idUsuario AS 'idUsuario', T.idTarefa AS 'idTarefa', U.nome AS 'Usuário', P.nome AS 'Projeto', T.descricao AS 'Tarefa',
+	    			CASE 
+	    				WHEN T.`Status` = 1 THEN 'Em Andamento'
+	    				WHEN T.`Status` = 2 THEN 'Em Alerta'
+	    				WHEN T.`Status` = 3 THEN 'Finalizado'
+	    				ELSE '-'
+	    			END AS 'Status'
             FROM usuarios U
             INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario
             INNER JOIN projetos P ON P.idProjeto = UP.codProjeto
@@ -257,6 +262,8 @@ DELIMITER ;
 
 
 
+
+SELECT * FROM Usuarios
 
 
 
@@ -288,20 +295,28 @@ DELIMITER //
 		IN p_idProjeto INT
 	)
 	BEGIN
-		SELECT P.nome 'Projeto', U.nome 'Usuário', T.descricao 'Tarefa', T.dataTermino 'Data Término', T.`Status` 'Status'
-		FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario
-		INNER JOIN projetos P ON P.idProjeto = UP.codProjeto 
-		INNER JOIN tarefas T ON T.codProjeto = P.idProjeto AND T.codUsuario = U.idUsuario
-		WHERE P.idProjeto = p_idProjeto AND UP.usuproj_isActive = 1 AND P.projeto_isActive = 1;
+		SELECT  U.idUsuario 'idUsuario' ,T.idTarefa 'idTarefa' ,P.nome 'Projeto', U.nome 'Usuário', T.descricao 'Tarefa', T.dataTermino 'Data Término', 
+			 CASE
+					WHEN T.`Status` = 1 THEN 'Em Andamento'
+					WHEN T.`Status` = 2 THEN 'Em Alerta'
+					WHEN T.`Status` = 3 THEN 'Finalizado'
+				ELSE '-'
+			END AS 'Status'
+			FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario
+			INNER JOIN projetos P ON P.idProjeto = UP.codProjeto 
+			INNER JOIN tarefas T ON T.codProjeto = P.idProjeto AND T.codUsuario = U.idUsuario
+			WHERE P.idProjeto = p_idProjeto AND UP.usuproj_isActive = 1 AND P.projeto_isActive = 1;
 	END //
 DELIMITER ;
+
+
 
 /*ALTERAR SITUAÇÃO DA TAREFA*/
 /* 
 	STATUS 1: EM ANDAMENTO
 	STATUS 2: EM ALERTA
 	STATUS 3: FINALIZADO
-	
+	HELPER: idTarefa, codSituacao
 */
 DELIMITER //
 	CREATE PROCEDURE sp_AlterarSituacaoTarefa(
@@ -312,6 +327,8 @@ DELIMITER //
 		UPDATE tarefas SET STATUS = p_situacao WHERE idTarefa = p_idTarefa;	
 	END //
 DELIMITER ;
+
+
 
 /*	PROCEDURE: ADD COMMENT [CREATE] */
 /*helper: codTarefa, Texto  */
@@ -358,9 +375,28 @@ SELECT U.nome, U.idUsuario FROM usuarios U INNER JOIN usuarios_projetos UP ON U.
 END //
 DELIMITER ;
 
+
+
+call sp_AdicionarComentario(5, 'Teste 222');
+
 							
 							
 							
-							
-							
-							
+SELECT U.nome 'nomeUsuario', T.descricao 'Descricao', T.dataInicio 'dataInicio', T.dataTermino 'dataTermino', 
+		CASE 
+		WHEN T.`Status` = 1 THEN 'Em Andamento'
+		WHEN T.`Status` = 2 THEN 'Em Alerta'
+		WHEN T.`Status` = 3 THEN 'Finalizado'
+		ELSE '-'
+		END AS 'Status'
+ FROM usuarios U INNER JOIN usuarios_projetos UP ON U.idUsuario = UP.codUsuario
+					INNER JOIN projetos P ON P.idProjeto = UP.codProjeto 
+					INNER JOIN tarefas T ON P.idProjeto = T.codProjeto AND T.codUsuario = U.idUsuario
+ WHERE idTarefa = 5;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
