@@ -116,7 +116,7 @@
                 while ($rowComentario = $retornoComentario->fetch_assoc()) {
                     print " 
                     <div class='management-responsavel-option'>
-                        <textarea class='form-control'> " . $rowComentario['texto'] . " </textarea>
+                        <textarea disabled class='form-control'> " . $rowComentario['texto'] . " </textarea>
                         <div class='comentario-hora'>
                             ". $rowComentario['dataHora'] ."
                         </div>                        
@@ -178,6 +178,17 @@
                     &nbsp;
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="management-responsavel">
+
+        <p>  Alterar Status </p>
+
+        <div class="management-responsavel-content status-content">
+           <button class='btn btn-success status-option'> Em Andamento </button>
+           <button class='btn btn-warning status-option'> Em Alerta </button>
+           <button class='btn btn-danger status-option'> Finalizado </button>
         </div>
 
     </div>

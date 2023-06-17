@@ -1,10 +1,10 @@
-body{
+body {
     background: linear-gradient(160deg, #3498db, #fff);
     background-attachment: fixed;
 }
 
-.loginTitulo{
-    text-align: center;    
+.loginTitulo {
+    text-align: center;
     font-family: geomatrix;
     font-size: 2em;
 }
@@ -14,17 +14,17 @@ body{
     src: url(../font/Geomatrix.otf);
 }
 
-.my-projects{
+.my-projects {
     margin-top: 5vh;
     height: 50vh;
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
-    position: inherit;       
-    margin-bottom: 5vh !important; 
+    position: inherit;
+    margin-bottom: 5vh !important;
 }
 
-.my-projects>h2{
+.my-projects>h2 {
     font-size: 3em;
     font-family: geomatrix;
     color: #000;
@@ -32,17 +32,18 @@ body{
     padding: 30px;
 }
 
-.my-projects-content{
+.my-projects-content {
     border: 1px solid #000;
     border-radius: 10px;
     position: relative;
     width: 100%;
     min-height: 300px;
     height: auto;
-    background-color: rgba(255,255,255, .75);    
+    background-color: rgba(255, 255, 255, .75);
 }
 
-.project-option, .adm-project-option{
+.project-option,
+.adm-project-option {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -55,22 +56,24 @@ body{
     height: 80px;
     border: 1px solid #000;
     border-radius: 5px;
-    background-color: rgba(255,255,255, .85);    
+    background-color: rgba(255, 255, 255, .85);
 }
 
-.project-option>p, .adm-project-option >p {
+.project-option>p,
+.adm-project-option>p {
     padding: 10px;
     font-size: 1.5em;
     font-family: geomatrix;
-    
+
 }
 
-.my-project-isResponsable, .adm-project-management{
+.my-project-isResponsable,
+.adm-project-management {
     display: flex;
     font-family: geomatrix;
     justify-content: center;
     align-items: center;
-    
+
     position: relative;
     background-color: #22a6b3;
     height: 100%;
@@ -78,11 +81,11 @@ body{
     text-transform: uppercase;
 }
 
-.adm-project-management{
+.adm-project-management {
     color: #fff;
 }
 
-.adm-project-addProject{
+.adm-project-addProject {
     height: 50px;
     padding: 10px;
     width: 100%;
@@ -91,7 +94,7 @@ body{
     align-items: center;
 }
 
-.btn-newProject{
+.btn-newProject {
     transition: 0.25s;
     height: fit-content;
     width: fit-content;
@@ -104,15 +107,16 @@ body{
     border-radius: 5px;
 }
 
-.btn-newProject:hover{
+.btn-newProject:hover {
     background-color: #92e46f;
     color: #000;
 }
 
-.loginContainer, .signUpContainer{
+.loginContainer,
+.signUpContainer {
     position: absolute;
     box-shadow: #fff 2px 5px 30px 5px;
-    border: 1px solid rgba(255,255,255,.75);
+    border: 1px solid rgba(255, 255, 255, .75);
     color: #fff;
     padding: 30px;
 
@@ -125,36 +129,37 @@ body{
     width: 350px;
 
 
-    background: linear-gradient(250deg, rgba(0,0,0, .75),  rgba(0,0,0, .9));
+    background: linear-gradient(250deg, rgba(0, 0, 0, .75), rgba(0, 0, 0, .9));
 
 }
-.signUpContainer{
+
+.signUpContainer {
     height: 550px;
 }
 
 
-.signUp{
+.signUp {
     font-size: 0.8em;
     color: #3498db;
 }
 
-.goToLogin{
+.goToLogin {
     bottom: 100;
 }
 
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-nav{
+nav {
     padding: 0;
     width: 100%;
     height: 80px;
     background: linear-gradient(150deg, #ecf0f1, #f5f6fa);
 }
 
-.divTitulo{
+.divTitulo {
     font-family: geomatrix;
     font-size: 1.8em;
     position: inherit;
@@ -165,38 +170,38 @@ nav{
     align-items: center;
 }
 
-.userStatus{
+.userStatus {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;    
+    text-align: center;
     color: #000;
     position: absolute;
     top: 0;
     right: 0%;
     height: 80px;
-    width: 150px;  
+    width: 150px;
 }
 
 
-.adm-projects{
+.adm-projects {
     margin-top: 100px;
     width: 80vw;
     min-height: 50vh;
-    height:auto;
+    height: auto;
     margin-left: 10vw;
     margin-right: 10vw;
 }
 
-.adm-projects>p{
+.adm-projects>p {
     text-align: center;
     font-family: geomatrix;
     font-size: 3em;
     padding: 20px;
 }
 
-.adm-projects-content{
+.adm-projects-content {
     background-color: #fff;
     height: 100%;
     width: 100%;
@@ -204,13 +209,14 @@ nav{
     border: 1px solid #000;
 }
 
-#modalNewProject, #fade{
+#modalNewProject,
+#fade {
     transition: 1s;
     opacity: 0;
     pointer-events: none;
 }
 
-#modalNewProject{    
+#modalNewProject {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -224,25 +230,25 @@ nav{
     z-index: 10;
 }
 
-#fade{
+#fade {
     position: fixed;
     left: 0;
     top: 0;
     z-index: 5;
     height: 100%;
     width: 100%;
-    background-color: rgba(0,0,0, .75);
+    background-color: rgba(0, 0, 0, .75);
     filter: blur(50px);
 }
 
-.modalHeader{
+.modalHeader {
     font-family: geomatrix;
     text-align: center;
     font-size: 2em;
     color: #fff;
 }
 
-.exitModalNewProject{
+.exitModalNewProject {
     position: inherit;
     top: 0;
     left: 90%;
@@ -250,13 +256,14 @@ nav{
     width: 50px;
     cursor: pointer;
 }
-.newProjectContainer{
+
+.newProjectContainer {
     width: 75%;
     margin-left: 12.5%;
     margin-right: 12.5%;
 }
 
-.align-submit-button{
+.align-submit-button {
     margin-top: 35px !important;
     width: 100%;
     display: flex;
@@ -264,21 +271,21 @@ nav{
     justify-content: center;
 }
 
-.project-management{
+.project-management {
     font-family: geomatrix;
 }
 
-.project-management > p{
+.project-management>p {
     margin-top: 50px;
     color: #000;
-    font-size: 4em;    
+    font-size: 4em;
     text-align: center;
 }
 
-.project-management-content{
+.project-management-content {
     font-size: 3em;
     border-radius: 10px;
-    border: 2px solid rgba(255,255,255, .75);
+    border: 2px solid rgba(255, 255, 255, .75);
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
@@ -287,7 +294,7 @@ nav{
     background-color: #78d2d83d;
 }
 
-.management-row{
+.management-row {
     display: flex;
     width: 70%;
     margin-left: 15%;
@@ -295,51 +302,51 @@ nav{
     padding: 20px;
 }
 
-.management-img-adjust{
+.management-img-adjust {
     margin-right: 25px;
- }
+}
 
- .management-adjust-data{
+.management-adjust-data {
     width: 150px !important;
- }
+}
 
- .management-label{
+.management-label {
     display: flex;
     align-items: center;
     min-width: 150px;
     font-size: 0.4em;
- }
+}
 
 
-.btn-content-management{
+.btn-content-management {
     margin-top: 2.5vh;
     display: flex;
     justify-content: center;
-    width: 100%;     
+    width: 100%;
 }
 
-.btn-content-management > button{
+.btn-content-management>button {
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.divTitulo:hover{
+.divTitulo:hover {
     cursor: pointer;
 }
 
 
-.management-responsavel{
+.management-responsavel {
     font-family: geomatrix;
 }
 
-.management-responsavel > p{
+.management-responsavel>p {
     margin-top: 50px;
     color: #000;
-    font-size: 4em;    
+    font-size: 4em;
     text-align: center;
 }
 
-.management-responsavel-content{
+.management-responsavel-content {
     background-color: #78d2d83d;
     min-height: 250px;
     height: auto;
@@ -348,14 +355,14 @@ nav{
     margin-right: 10vw;
     font-size: 2em;
     border-radius: 10px;
-    border: 2px solid rgba(255,255,255, .75);
+    border: 2px solid rgba(255, 255, 255, .75);
 }
 
-.management-responsavel-content:last-child{
+.management-responsavel-content:last-child {
     margin-bottom: 10vh;
 }
 
-.management-responsavel-option{    
+.management-responsavel-option {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -365,11 +372,11 @@ nav{
     height: 100px;
 }
 
-.management-responsavel-content > .management-responsavel-option{    
+.management-responsavel-content>.management-responsavel-option {
     padding: 30px;
 }
 
-.mng-excluir-membro{
+.mng-excluir-membro {
     transition: 0.5s;
     background-color: rgba(255, 0, 0, 0.9);
     display: flex;
@@ -377,25 +384,30 @@ nav{
     align-items: center;
     cursor: pointer;
     border: 1px solid #000;
-    border-radius: 5px;    
+    border-radius: 5px;
     width: 80px;
     height: 80px;
 }
 
-.mng-excluir-membro:hover{
+.mng-excluir-membro:hover {
     width: 80px;
     height: 80px;
-    background-color: rgba(255, 0, 0, 1);    
+    background-color: rgba(255, 0, 0, 1);
 }
-.mng-excluir-membro>img{
+
+.mng-excluir-membro>img {
     transition: 0.5s;
 }
+
 .mng-excluir-membro:hover>img {
-    filter:invert(100%);
+    filter: invert(100%);
 }
 
 
-#modalNewResponsavel, #modalNewIntegrante, #modalNewTask, #modalNewComentario{
+#modalNewResponsavel,
+#modalNewIntegrante,
+#modalNewTask,
+#modalNewComentario {
     transition: 0.75s;
     padding: 35px;
     position: fixed;
@@ -412,99 +424,103 @@ nav{
     pointer-events: none;
 }
 
-#modalNewIntegrante{
+#modalNewIntegrante {
     background: linear-gradient(75deg, #f9ca24, #f6e58d);
 }
 
-#modalNewTask{
+#modalNewTask {
     background: linear-gradient(180deg, #f7f1e3, #aaa69d);
     height: auto;
 }
 
-#modalNewComentario > .modalHeader,
-#modalNewTask > .modalHeader{
+#modalNewComentario>.modalHeader,
+#modalNewTask>.modalHeader {
     margin-top: -40px;
     color: #000;
 }
 
-#modalNewComentario{
+#modalNewComentario {
     background: linear-gradient(180deg, #F79F1F, #FFC312);
 }
 
-#modalNewComentario > .modalHeader{
+#modalNewComentario>.modalHeader {
     color: #fff;
 }
 
 
-.modalHeaderIntegrante{
+.modalHeaderIntegrante {
     color: #000;
 }
 
-.adm-management-addResponsavel{
+.adm-management-addResponsavel {
     font-size: 0.5em;
 }
 
-#sltResponsavel{
+#sltResponsavel {
     width: 100%;
 }
 
-.btn-newResponsavel{
+.btn-newResponsavel {
     margin-top: 80px;
 }
 
-.exitModalNewResponsavel, .exitModalNewTask{
+.exitModalNewResponsavel,
+.exitModalNewTask {
     border-radius: 50%;
     cursor: pointer;
     margin-left: 90%;
 }
 
-.btn-newResponsavel, .btn-newIntegrante, .btn-newTask {
+.btn-newResponsavel,
+.btn-newIntegrante,
+.btn-newTask {
     color: #fff;
     transition: 0.55s all;
     padding: 7.5px;
     border-radius: 5px;
     border: 1px solid #000;
-    background-color:  #636e72;
-    
+    background-color: #636e72;
+
 }
 
-.btn-newIntegrante{
+.btn-newIntegrante {
     border: 1px solid #000;
-    background-color:  #f6e58d;
+    background-color: #f6e58d;
     color: #000;
     margin-top: 80px;
 }
 
-.btn-newResponsavel:hover{
+.btn-newResponsavel:hover {
     color: #fff;
-    background-color:  #2d3436;
+    background-color: #2d3436;
 }
 
 .btn-newIntegrante:hover {
     color: #000;
-    background-color:  #f1c40f;
+    background-color: #f1c40f;
 }
 
-.btn-newTask{
+.btn-newTask {
     border: 1px solid #fff;
-    background-color:  #3d3d3d;
+    background-color: #3d3d3d;
     color: #fff;
 }
 
-.btn-newTask:hover{
+.btn-newTask:hover {
     color: #3d3d3d;
-    background-color:  #fff;
+    background-color: #fff;
 
 }
 
 
 
-.btnAddMember-content{
+.btnAddMember-content {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.btnAddMember{    
+
+.btnAddMember {
     margin-top: 100px;
     margin-bottom: 50px;
     transition: 0.5s;
@@ -513,43 +529,46 @@ nav{
     border-radius: 5px;
     color: #fff;
 }
-.btnAddMember:hover{
+
+.btnAddMember:hover {
     background-color: #2071ce;
 }
 
-.fundoResponsaveis{
+.fundoResponsaveis {
     text-align: center;
-    background: linear-gradient(180deg, #192a56, #2f3640 );
+    background: linear-gradient(180deg, #192a56, #2f3640);
     color: #fff;
 }
 
-.fundoResponsaveis> .management-responsavel-option,
-.fundoIntegrantes> .management-responsavel-option
-{
+.fundoResponsaveis>.management-responsavel-option,
+.fundoIntegrantes>.management-responsavel-option {
     justify-content: center;
 }
 
-.fundoIntegrantes{
+.fundoIntegrantes {
     background: linear-gradient(180deg, #f9ca24, #f6e58d);
-    color: #000;    
+    color: #000;
 }
-.fundoMinhasTarefas{
-    background: linear-gradient(180deg, #6ab04c, #badc58);    
+
+.fundoMinhasTarefas {
+    background: linear-gradient(180deg, #6ab04c, #badc58);
 }
-.fundoTarefasEquipe{
-    background: linear-gradient(180deg, #2f3640, #7f8fa6);    
+
+.fundoTarefasEquipe {
+    background: linear-gradient(180deg, #2f3640, #7f8fa6);
 }
-.fundoTarefasEquipe> .management-responsavel-option{
+
+.fundoTarefasEquipe>.management-responsavel-option {
     color: #fff;
 }
 
-.fundoTarefasEquipe> .management-responsavel-option,
-.fundoMinhasTarefas> .management-responsavel-option{
+.fundoTarefasEquipe>.management-responsavel-option,
+.fundoMinhasTarefas>.management-responsavel-option {
     cursor: pointer;
 }
 
 
-.responsible-management{
+.responsible-management {
     display: flex;
     margin-top: 100px;
     justify-content: center;
@@ -560,7 +579,7 @@ nav{
     border-radius: 5px;
 }
 
-.btn-gerenciar{
+.btn-gerenciar {
     border-radius: 10px;
     padding: 25px;
     transition: 0.5s;
@@ -571,21 +590,23 @@ nav{
     border: 1px solid #fff;
     color: #fff;
 }
-.btn-gerenciar:hover{
+
+.btn-gerenciar:hover {
     background-color: #fff;
     border: 1px solid #2d3436;
     color: #2d3436;
 
 }
 
-.tarefa-option{
+.tarefa-option {
     justify-content: space-around;
     align-items: center;
     font-size: 0.75em;
 }
 
-.statusTarefa, .statusTarefaEquipe{
-    display: flex;  
+.statusTarefa,
+.statusTarefaEquipe {
+    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.75em;
@@ -595,29 +616,56 @@ nav{
     background-color: #d2dae2;
     border: 1px solid #000;
 }
-.statusTarefaEquipe, .statusTarefa{
+
+.statusTarefaEquipe,
+.statusTarefa {
     text-align: center;
     color: #000;
 }
 
-.tarefa-descricao{
+.tarefa-descricao {
     display: flex;
     align-items: center;
     height: fit-content;
     width: fit-content;
 }
 
-.tarefa-usuario{
+.tarefa-usuario {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     width: 170px;
     padding-right: 30px;
-    border-right: 1px solid rgba(255,255,255,.5);
-    
+    border-right: 1px solid rgba(255, 255, 255, .5);
+
 }
 
-.tarefa-descricao{
+.tarefa-descricao {
     width: 50%;
+}
+
+
+.comentario-hora {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: inherit;
+    font-size: 0.5em;
+    top: 0;
+    right: 50%;
+
+}
+
+.status-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.status-option {
+    height: fit-content;
+    min-height: 80px;
+    min-width: 200px;
 }
