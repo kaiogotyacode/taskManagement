@@ -514,8 +514,7 @@ nav{
 }
 
 .fundoResponsaveis> .management-responsavel-option,
-.fundoIntegrantes> .management-responsavel-option,
-.fundoMinhasTarefas> .management-responsavel-option
+.fundoIntegrantes> .management-responsavel-option
 {
     justify-content: center;
 }
@@ -567,4 +566,47 @@ nav{
     border: 1px solid #2d3436;
     color: #2d3436;
 
+}
+
+.tarefa-option{
+    justify-content: space-around;
+    align-items: center;
+    font-size: 0.75em;
+}
+
+.statusTarefa, .statusTarefaEquipe{
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75em;
+    border-radius: 5px;
+    height: 80px;
+    width: 120px;
+    background-color: #d2dae2;
+    border: 1px solid #000;
+}
+.statusTarefaEquipe{
+    color: #000;
+}
+
+.tarefa-descricao{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+}
+
+.tarefa-usuario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 170px;
+    padding-right: 30px;
+    border-right: 1px solid rgba(255,255,255,.5);
+    
+}
+
+.tarefa-descricao{
+    width: 50%;
 }
