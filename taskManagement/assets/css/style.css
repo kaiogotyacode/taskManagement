@@ -669,3 +669,9 @@ nav {
     min-height: 80px;
     min-width: 200px;
 }
+
+.btnAddComentario{
+    border: 1px solid #000;
+    background-color: #f5f6fa;
+    color: #000;
+}

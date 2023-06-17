@@ -208,6 +208,17 @@ function validarNewTask(){
     return true;
 }
 
+function validarNewComentario(){
+    var mensagem = document.querySelector("#NCMensagem").value; 
+
+    if(mensagem.length == 0 ){
+        alert('Verifique os campos e tente novamente!');
+        return false;
+    }
+
+    return true;
+}
+
 
 function alterarProjeto() {
 

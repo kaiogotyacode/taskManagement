@@ -132,7 +132,7 @@
 
                     print "
                     <div class='btnAddMember-content'>
-                        <button id='AddNewResponsavel' onclick=\"return openModalNewComentario()\" class='btnAddMember'> Adicionar Responsável </button>
+                        <button id='AddNewResponsavel' onclick=\"return openModalNewComentario()\" class='btnAddMember'> Adicionar Comentário </button>
                     </div>
 
             <div class='adm-management-addResponsavel'>
@@ -146,31 +146,15 @@
                         <p> Novo Comentário </p>
                     </div>
                     <div class='modalBody newResponsavelContainer'>
-                        <form method='POST' action='../application/newResponsavel.php?' onsubmit=\"return validarNewResponsavel()\">
+                        <form method='POST' action='./newComentario.php' onsubmit=\"return validarNewComentario()\">
                             <div class='row'>
-
                                 <div class='col-12'>
-                                    <label style='color: #fff;font-family: geomatrix' for='NPNome'>Selecione um novo responsável: </label>
-                                    <select name='sltResponsavel' class='form-select' id='sltResponsavel'>
-                                        <option value='0' selected>[Selecione uma opção]</option>
-
-                                        ";
-                    $queryUsuariosNaoVinculados = "CALL sp_UsuariosNaoVinculados(" . $_SESSION['s_idProjeto'] . ")";
-                    $retornoUsuariosNaoVinculados = $conn->query($queryUsuariosNaoVinculados);
-
-                    if ($retornoUsuariosNaoVinculados && $retornoUsuariosNaoVinculados->num_rows > 0) {
-                        while ($rowUsuarios = $retornoUsuariosNaoVinculados->fetch_assoc()) {
-                            print "<option value='" . $rowUsuarios['idUsuario'] . "'> " . $rowUsuarios['nome'] . "</option>";
-                        }
-                    }
-
-
-                    print "
-                                    </select>
+                                    <label style='color: #fff;font-family: geomatrix' for='NCMensagem'>Mensagem: </label>
+                                    <textarea class='form-control' name='NCMensagem' id='NCMensagem'></textarea>
                                 </div>
 
                                 <div class='align-submit-button'>
-                                    <input type='submit' class='btn-newResponsavel' value='Cadastrar' />
+                                    <input type='submit' class='btn-newResponsavel btnAddComentario' value='Adicionar' />
                                 </div>
 
                             </div>
