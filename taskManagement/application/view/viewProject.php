@@ -227,7 +227,7 @@
 
                 while ($rowTarefa = $retornoTarefas->fetch_assoc()) {
                     print " 
-                        <div class='management-responsavel-option tarefa-option'>
+                        <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefa['idTarefa']."'\">
                             <div class='tarefa-usuario'>
                                 ".$rowTarefa['Usuário']."
                             </div>
