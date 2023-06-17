@@ -227,8 +227,16 @@
 
                 while ($rowTarefa = $retornoTarefas->fetch_assoc()) {
                     print " 
-                        <div class='management-responsavel-option'>
-                            <p> " . $rowTarefa['Tarefa'] . " </p>                            
+                        <div class='management-responsavel-option tarefa-option'>
+                            <div class='tarefa-usuario'>
+                                ".$rowTarefa['Usuário']."
+                            </div>
+                            <div class='tarefa-descricao'>
+                                ". $rowTarefa['Tarefa']."    
+                            </div>
+                            <div class='statusTarefa'> 
+                              ATIVO 
+                            </div>                        
                         </div>
                         ";
                 }
@@ -244,22 +252,22 @@
             <div class='management-responsavel'>
             <p> Tarefas da Equipe </p>
 
-            <div class='management-responsavel-content fundoTarefasEquipe'>" .
-
-            $conn->close();
-        $conn = new mysqli(HOST, USER, PASS, DB);
-
-        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(" . $_SESSION['s_idProjeto'] . ")";
-
-        $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
+            <div class='management-responsavel-content fundoTarefasEquipe'>".
+        $conn->close();        $conn = new mysqli(HOST, USER, PASS, DB);        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(". $_SESSION['s_idProjeto'].")";        $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
 
         if ($retornoTarefasEquipe->num_rows > 0) {
-
-            while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
-                print " 
-                            <div class='management-responsavel-option'>
-                                <p> " . $rowTarefaEquipe['Tarefa'] . " </p>                            
-                                </div>                      
+                        while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
+                print "     <div class='management-responsavel-option tarefa-option'>
+                                <div class='tarefa-usuario'>
+                                    ".$rowTarefaEquipe['Usuário']."
+                                </div>
+                                <div class='tarefa-descricao'>
+                                    ". $rowTarefaEquipe['Tarefa']."    
+                                </div>
+                                <div class='statusTarefaEquipe'> 
+                                    ATIVO
+                                 </div> 
+                            </div>                      
                             ";
             }
         }
