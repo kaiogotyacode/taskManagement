@@ -196,9 +196,9 @@
                         <p>  Alterar Status </p>
                 
                         <div class='management-responsavel-content status-content'>
-                        <button class='btn btn-success status-option'> Em Andamento </button>
-                        <button class='btn btn-warning status-option'> Em Alerta </button>
-                        <button class='btn btn-danger status-option'> Finalizado </button>
+                        <button class='btn btn-success status-option' onclick=\"window.location.href='./alterarStatus.php?idTarefa=".$_SESSION['s_idTarefa']."&status=1'\"> Em Andamento </button>
+                        <button class='btn btn-warning status-option' onclick=\"window.location.href='./alterarStatus.php?idTarefa=".$_SESSION['s_idTarefa']."&status=2'\"> Em Alerta </button>
+                        <button class='btn btn-danger status-option'  onclick=\"window.location.href='./alterarStatus.php?idTarefa=".$_SESSION['s_idTarefa']."&status=3'\"> Finalizado </button>
                         </div>
     
                     </div>";
