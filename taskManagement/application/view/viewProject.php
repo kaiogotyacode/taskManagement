@@ -235,7 +235,7 @@
                                 ". $rowTarefa['Tarefa']."    
                             </div>
                             <div class='statusTarefa'> 
-                              ATIVO 
+                            ". $rowTarefa['Status']."    
                             </div>                        
                         </div>
                         ";
@@ -252,8 +252,11 @@
             <div class='management-responsavel'>
             <p> Tarefas da Equipe </p>
 
-            <div class='management-responsavel-content fundoTarefasEquipe'>".
-        $conn->close();        $conn = new mysqli(HOST, USER, PASS, DB);        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(". $_SESSION['s_idProjeto'].")";        $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
+            <div class='management-responsavel-content fundoTarefasEquipe'>";
+        $conn->close();        
+        $conn = new mysqli(HOST, USER, PASS, DB);        
+        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(". $_SESSION['s_idProjeto'].")";        
+        $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
 
         if ($retornoTarefasEquipe->num_rows > 0) {
                         while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
@@ -265,7 +268,7 @@
                                     ". $rowTarefaEquipe['Tarefa']."    
                                 </div>
                                 <div class='statusTarefaEquipe'> 
-                                    ATIVO
+                                ". $rowTarefaEquipe['Status']."    
                                  </div> 
                             </div>                      
                             ";

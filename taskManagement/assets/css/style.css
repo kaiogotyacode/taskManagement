@@ -585,7 +585,8 @@ nav{
     background-color: #d2dae2;
     border: 1px solid #000;
 }
-.statusTarefaEquipe{
+.statusTarefaEquipe, .statusTarefa{
+    text-align: center;
     color: #000;
 }
 
