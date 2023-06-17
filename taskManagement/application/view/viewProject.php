@@ -113,7 +113,7 @@
             <p> Nova Tarefa </p>
         </div>
         <div class="modalBody newProjectContainer">
-            <form method="POST" action="newTask.php" onsubmit="return validarNewTask()">
+            <form method="POST" action="newTask.php?isResponsable=<?php print $_REQUEST["isResponsable"];?>" onsubmit="return validarNewTask()">
                 <div class="row">
 
                     <div class="col-12">
@@ -227,7 +227,7 @@
 
                 while ($rowTarefa = $retornoTarefas->fetch_assoc()) {
                     print " 
-                        <div class='management-responsavel-option tarefa-option'>
+                        <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefa['idTarefa']."&isYours=1'\">
                             <div class='tarefa-usuario'>
                                 ".$rowTarefa['Usuário']."
                             </div>
@@ -260,7 +260,7 @@
 
         if ($retornoTarefasEquipe->num_rows > 0) {
                         while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
-                print "     <div class='management-responsavel-option tarefa-option'>
+                print "     <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefaEquipe['idTarefa']."&isYours=0'\">
                                 <div class='tarefa-usuario'>
                                     ".$rowTarefaEquipe['Usuário']."
                                 </div>

@@ -11,10 +11,10 @@
     $retornoNewTask = $conn->query($queryNewTask);
 
     if($retornoNewTask){
-        print "<script> window.location.href='../home.php' </script>";
+        print "<script> window.location.href='./viewProject.php?isResponsable=".$_REQUEST['isResponsable']."' </script>";
         print "<script>  alert('Tarefa adicionada com sucesso!') </script>";
     }else{
-        print "<script> window.location.href='../home.php' </script>";
+        print "<script> window.location.href='./viewProject.php?isResponsable=".$_REQUEST['isResponsable']."' </script>";
         print "<script>  alert('Erro ao adicionar tarefa!') </script>";
     }
 
