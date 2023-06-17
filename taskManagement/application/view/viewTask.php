@@ -31,7 +31,7 @@
                                         INNER JOIN tarefas T ON P.idProjeto = T.codProjeto AND T.codUsuario = U.idUsuario
                         WHERE idTarefa = " . $_SESSION['s_idTarefa'];
 
-    $retornoViewTask= $conn->query($queryViewTask);
+    $retornoViewTask = $conn->query($queryViewTask);
 
     $objTarefa = $retornoViewTask->fetch_assoc();
 
@@ -70,40 +70,141 @@
     </nav>
 
     <div class="project-management">
-        <p> Tarefa </p>       
-            <div class="project-management-content">
-                <div class="management-row">
-                    <img class="management-img-adjust" height="50" width="50" src="../../assets/images/userIcon.png" />
-                    <label class="management-label"> Responsável: </label>
-                    <input class="form-control management-adjust" name="mngNomeUsuario" id="mngNomeUsuario" disabled value="<?php print $nomeUsuario; ?>" type="text" />
-                </div>
-                
-                <div class="management-row">
-                    <img class="management-img-adjust" height="50" width="50" src="../../assets/images/descricaoIcon.png" />
-                    <label class="management-label"> Descrição: </label>
-                    <textarea class="form-control management-adjust" name="mngDescricao" id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
-                </div>
-                
-                <div class="management-row">
-                    <img class="management-img-adjust" height="50" width="50" src="../../assets/images/dateIcon.png" />
-                    <label class="management-label"> Data Início: </label>
-                    <input class="form-control management-adjust-data" name="mngDataInicio" id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
-                </div>
-                
-                <div class="management-row">
-                    <img class="management-img-adjust" height="50" width="50" src="../../assets/images/dateIconConcluded.png" />
-                    <label class="management-label"> Data Término: </label>
-                    <input class="form-control management-adjust-data" name="mngDataTermino" id="mngDataTermino" disabled value="<?php print $dataTermino; ?>" type="date" />
-                </div>
-                
-                <div class="management-row">
-                    <img class="management-img-adjust" height="50" width="50" src="../../assets/images/statusIcon.png" />
-                    <label class="management-label"> Situação: </label>
-                    <input class="form-control management-adjust" style="width: fit-content;text-align: center;" name="mngNomeUsuario" id="mngNomeUsuario" disabled value="<?php print $status; ?>" type="text" />
-                </div>
-    
-    </div>
+        <p> Tarefa </p>
+        <div class="project-management-content">
+            <div class="management-row">
+                <img class="management-img-adjust" height="50" width="50" src="../../assets/images/userIcon.png" />
+                <label class="management-label"> Responsável: </label>
+                <input class="form-control management-adjust" name="mngNomeUsuario" id="mngNomeUsuario" disabled value="<?php print $nomeUsuario; ?>" type="text" />
+            </div>
 
+            <div class="management-row">
+                <img class="management-img-adjust" height="50" width="50" src="../../assets/images/descricaoIcon.png" />
+                <label class="management-label"> Descrição: </label>
+                <textarea class="form-control management-adjust" name="mngDescricao" id="mngDescricao" disabled placeholder="Digite um nome..." type="text"> <?php print $descricao; ?> </textarea>
+            </div>
+
+            <div class="management-row">
+                <img class="management-img-adjust" height="50" width="50" src="../../assets/images/dateIcon.png" />
+                <label class="management-label"> Data Início: </label>
+                <input class="form-control management-adjust-data" name="mngDataInicio" id="mngDataInicio" disabled value="<?php print $dataInicio; ?>" type="date" />
+            </div>
+
+            <div class="management-row">
+                <img class="management-img-adjust" height="50" width="50" src="../../assets/images/dateIconConcluded.png" />
+                <label class="management-label"> Data Término: </label>
+                <input class="form-control management-adjust-data" name="mngDataTermino" id="mngDataTermino" disabled value="<?php print $dataTermino; ?>" type="date" />
+            </div>
+
+            <div class="management-row">
+                <img class="management-img-adjust" height="50" width="50" src="../../assets/images/statusIcon.png" />
+                <label class="management-label"> Situação: </label>
+                <input class="form-control management-adjust" style="width: fit-content;text-align: center;" name="mngNomeUsuario" id="mngNomeUsuario" disabled value="<?php print $status; ?>" type="text" />
+            </div>
+
+        </div>
+
+        <div class="management-responsavel">
+            <p> Comentários </p>
+
+            <div class="management-responsavel-content">
+                <?php
+                $queryComentario = "SELECT * FROM Comentarios where codTarefa = " . $_SESSION['s_idTarefa'];
+
+                $retornoComentario = $conn->query($queryComentario);
+                if ($retornoComentario->num_rows > 0) {
+                    while ($rowComentario = $retornoComentario->fetch_assoc()) {
+                        print " 
+                    <div class='management-responsavel-option'>
+                        <textarea disabled class='form-control'> " . $rowComentario['texto'] . " </textarea>
+                        <div class='comentario-hora'>
+                            " . $rowComentario['dataHora'] . "
+                        </div>                        
+                    </div>
+                    ";
+                    }
+                }
+
+                ?>
+
+                <?php
+                if ($_REQUEST['isYours'] == 1) {
+
+                    print "
+                    <div class='btnAddMember-content'>
+                        <button id='AddNewResponsavel' onclick=\"return openModalNewComentario()\" class='btnAddMember'> Adicionar Responsável </button>
+                    </div>
+
+            <div class='adm-management-addResponsavel'>
+
+                <div id='modalNewComentario'>
+                    <div class='exitModalNewResponsavel' onclick=\"exitModalNewComentario()\">
+                        <img src='../../assets/images/exitIcon.png' height='50' width='50' />
+                    </div>
+
+                    <div class='modalHeader'>
+                        <p> Novo Comentário </p>
+                    </div>
+                    <div class='modalBody newResponsavelContainer'>
+                        <form method='POST' action='../application/newResponsavel.php?' onsubmit=\"return validarNewResponsavel()\">
+                            <div class='row'>
+
+                                <div class='col-12'>
+                                    <label style='color: #fff;font-family: geomatrix' for='NPNome'>Selecione um novo responsável: </label>
+                                    <select name='sltResponsavel' class='form-select' id='sltResponsavel'>
+                                        <option value='0' selected>[Selecione uma opção]</option>
+
+                                        ";
+                    $queryUsuariosNaoVinculados = "CALL sp_UsuariosNaoVinculados(" . $_SESSION['s_idProjeto'] . ")";
+                    $retornoUsuariosNaoVinculados = $conn->query($queryUsuariosNaoVinculados);
+
+                    if ($retornoUsuariosNaoVinculados && $retornoUsuariosNaoVinculados->num_rows > 0) {
+                        while ($rowUsuarios = $retornoUsuariosNaoVinculados->fetch_assoc()) {
+                            print "<option value='" . $rowUsuarios['idUsuario'] . "'> " . $rowUsuarios['nome'] . "</option>";
+                        }
+                    }
+
+
+                    print "
+                                    </select>
+                                </div>
+
+                                <div class='align-submit-button'>
+                                    <input type='submit' class='btn-newResponsavel' value='Cadastrar' />
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id='fade'>
+                    &nbsp;
+                </div>
+            </div>
+                ";
+                }
+                ?>
+
+            </div>
+        </div>
+
+        <?php
+        if ($_REQUEST['isYours'] == 1) {
+
+            print "<div class='management-responsavel'>
+
+                        <p>  Alterar Status </p>
+                
+                        <div class='management-responsavel-content status-content'>
+                        <button class='btn btn-success status-option' onclick=\"window.location.href='./alterarStatus.php?idTarefa=".$_SESSION['s_idTarefa']."&status=1'\"> Em Andamento </button>
+                        <button class='btn btn-warning status-option' onclick=\"window.location.href='./alterarStatus.php?idTarefa=".$_SESSION['s_idTarefa']."&status=2'\"> Em Alerta </button>
+                        <button class='btn btn-danger status-option'  onclick=\"window.location.href='./alterarStatus.php?idTarefa=".$_SESSION['s_idTarefa']."&status=3'\"> Finalizado </button>
+                        </div>
+    
+                    </div>";
+        }
+
+        ?>
 
 
 

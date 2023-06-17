@@ -113,7 +113,7 @@
             <p> Nova Tarefa </p>
         </div>
         <div class="modalBody newProjectContainer">
-            <form method="POST" action="newTask.php?isResponsable=<?php print $_REQUEST["isResponsable"];?>" onsubmit="return validarNewTask()">
+            <form method="POST" action="newTask.php?isResponsable=<?php print $_REQUEST["isResponsable"]; ?>" onsubmit="return validarNewTask()">
                 <div class="row">
 
                     <div class="col-12">
@@ -227,15 +227,15 @@
 
                 while ($rowTarefa = $retornoTarefas->fetch_assoc()) {
                     print " 
-                        <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefa['idTarefa']."&isYours=1'\">
+                        <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=" . $rowTarefa['idTarefa'] . "&isYours=1'\">
                             <div class='tarefa-usuario'>
-                                ".$rowTarefa['Usuário']."
+                                " . $rowTarefa['Usuário'] . "
                             </div>
                             <div class='tarefa-descricao'>
-                                ". $rowTarefa['Tarefa']."    
+                                " . $rowTarefa['Tarefa'] . "    
                             </div>
                             <div class='statusTarefa'> 
-                            ". $rowTarefa['Status']."    
+                            " . $rowTarefa['Status'] . "    
                             </div>                        
                         </div>
                         ";
@@ -253,22 +253,22 @@
             <p> Tarefas da Equipe </p>
 
             <div class='management-responsavel-content fundoTarefasEquipe'>";
-        $conn->close();        
-        $conn = new mysqli(HOST, USER, PASS, DB);        
-        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(". $_SESSION['s_idProjeto'].")";        
+        $conn->close();
+        $conn = new mysqli(HOST, USER, PASS, DB);
+        $queryTarefasEquipe = "CALL sp_VerTarefasEquipe(" . $_SESSION['s_idProjeto'] . ")";
         $retornoTarefasEquipe = $conn->query($queryTarefasEquipe);
 
         if ($retornoTarefasEquipe->num_rows > 0) {
-                        while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
-                print "     <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefaEquipe['idTarefa']."&isYours=0'\">
+            while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
+                print "     <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=" . $rowTarefaEquipe['idTarefa'] . "&isYours=0'\">
                                 <div class='tarefa-usuario'>
-                                    ".$rowTarefaEquipe['Usuário']."
+                                    " . $rowTarefaEquipe['Usuário'] . "
                                 </div>
                                 <div class='tarefa-descricao'>
-                                    ". $rowTarefaEquipe['Tarefa']."    
+                                    " . $rowTarefaEquipe['Tarefa'] . "    
                                 </div>
                                 <div class='statusTarefaEquipe'> 
-                                ". $rowTarefaEquipe['Status']."    
+                                " . $rowTarefaEquipe['Status'] . "    
                                  </div> 
                             </div>                      
                             ";
