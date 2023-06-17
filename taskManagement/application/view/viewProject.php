@@ -227,7 +227,7 @@
 
                 while ($rowTarefa = $retornoTarefas->fetch_assoc()) {
                     print " 
-                        <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefa['idTarefa']."'\">
+                        <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefa['idTarefa']."&isYours=1'\">
                             <div class='tarefa-usuario'>
                                 ".$rowTarefa['Usuário']."
                             </div>
@@ -260,7 +260,7 @@
 
         if ($retornoTarefasEquipe->num_rows > 0) {
                         while ($rowTarefaEquipe = $retornoTarefasEquipe->fetch_assoc()) {
-                print "     <div class='management-responsavel-option tarefa-option' onclick=\"alert('teste')\">
+                print "     <div class='management-responsavel-option tarefa-option' onclick=\"window.location.href='./viewTask.php?idTarefa=".$rowTarefaEquipe['idTarefa']."&isYours=0'\">
                                 <div class='tarefa-usuario'>
                                     ".$rowTarefaEquipe['Usuário']."
                                 </div>
