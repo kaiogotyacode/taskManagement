@@ -102,6 +102,16 @@ function openModalManageTask() {
 
 }
 
+function openModalNewComentario() {
+     
+    var modal = document.getElementById("modalNewComentario");
+    var fade = document.getElementById("fade");    
+
+    modal.style.cssText += 'opacity: 1; pointer-events: all;';
+    fade.style.cssText += 'opacity: 1; pointer-events: all;';    
+
+}
+
 
 function exitModalNewProject() {
     var modal = document.getElementById("modalNewProject");
@@ -132,6 +142,15 @@ function exitModalNewIntegrante() {
 
 function exitModalNewTask() {
     var modal = document.getElementById("modalNewTask");
+    var fade = document.getElementById("fade");
+
+
+    modal.style.cssText += 'opacity: 0; pointer-events: none;';
+    fade.style.cssText += 'opacity: 0; pointer-events: none;';
+}
+
+function exitModalNewComentario() {
+    var modal = document.getElementById("modalNewComentario");
     var fade = document.getElementById("fade");
 
 

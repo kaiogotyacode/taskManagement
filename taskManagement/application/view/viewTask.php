@@ -104,7 +104,83 @@
     
     </div>
 
+    <div class="management-responsavel">
+        <p> Comentários </p>
 
+        <div class="management-responsavel-content">
+            <?php
+            $queryComentario = "SELECT * FROM Comentarios where codTarefa = ".$_SESSION['s_idTarefa']; 
+
+            $retornoComentario = $conn->query($queryComentario);
+            if ($retornoComentario->num_rows > 0) {
+                while ($rowComentario = $retornoComentario->fetch_assoc()) {
+                    print " 
+                    <div class='management-responsavel-option'>
+                        <textarea class='form-control'> " . $rowComentario['texto'] . " </textarea>
+                        <div class='comentario-hora'>
+                            ". $rowComentario['dataHora'] ."
+                        </div>                        
+                    </div>
+                    ";
+                }
+            }
+
+            ?>
+
+
+            <div class="btnAddMember-content">
+                <button id="AddNewResponsavel" onclick="return openModalNewComentario()" class="btnAddMember"> Adicionar Responsável </button>
+            </div>
+
+            <div class="adm-management-addResponsavel">
+
+                <div id="modalNewComentario">
+                    <div class="exitModalNewResponsavel" onclick="exitModalNewComentario()">
+                        <img src="../../assets/images/exitIcon.png" height="50" width="50" />
+                    </div>
+
+                    <div class="modalHeader">
+                        <p> Novo Comentário </p>
+                    </div>
+                    <div class="modalBody newResponsavelContainer">
+                        <form method="POST" action="../application/newResponsavel.php?" onsubmit="return validarNewResponsavel()">
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <label style="color: #fff;font-family: geomatrix" for="NPNome">Selecione um novo responsável: </label>
+                                    <select name="sltResponsavel" class="form-select" id="sltResponsavel">
+                                        <option value="0" selected>[Selecione uma opção]</option>
+
+                                        <?php
+                                            $queryUsuariosNaoVinculados = "CALL sp_UsuariosNaoVinculados(" . $_SESSION['s_idProjeto'] . ")";
+                                            $retornoUsuariosNaoVinculados = $conn->query($queryUsuariosNaoVinculados);
+
+                                            if ($retornoUsuariosNaoVinculados && $retornoUsuariosNaoVinculados->num_rows > 0) {
+                                                while ($rowUsuarios = $retornoUsuariosNaoVinculados->fetch_assoc()) {
+                                                    print "<option value='" . $rowUsuarios['idUsuario'] . "'> " . $rowUsuarios['nome'] . "</option>";
+                                                }
+                                            }
+
+                                        ?>
+
+                                    </select>
+                                </div>
+
+                                <div class="align-submit-button">
+                                    <input type="submit" class="btn-newResponsavel" value="Cadastrar" />
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="fade">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 </body>
